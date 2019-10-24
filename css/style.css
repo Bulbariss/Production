@@ -92,18 +92,23 @@
   background: url(../img/music\ clip.png);
   height: 90vh;
   background-size:100%;
+  background-repeat: no-repeat;
 }
 #eight {
   background-image: url(../img/reportazh.png);
   height: 90vh;
   width: 100vw;
-  background-size:100%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #nine {
   background-image: url(../img/video\ reklama.jpg);
   height: 90vh;
   width: 100%;
   background-size:100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* -------- IDs ---------- */
