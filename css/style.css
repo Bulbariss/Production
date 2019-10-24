@@ -57,17 +57,21 @@
 #one {
   background-image: url(../img/3d\ visualisation.png);
   height: 90vh;
+  background-attachment: fixed;
 }
 #two {
   background-image: url(../img/anim\ &\ typography_00000.png);
   height: 90vh;
-
+  width: auto;
+  position: fixed;
   
 }
 #three {
   background-image: url(../img/AR\ razrabotka.png);
   height: 90vh;
   width: 100%;
+  background-attachment: fixed;
+  background-size: 100%;
 }
 #four {
   background-image: url(../img/blogging.png);
