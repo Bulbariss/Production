@@ -57,68 +57,38 @@
 #one {
   background-image: url(../img/3d\ visualisation.png);
   height: 90vh;
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 #two {
   background-image: url(../img/anim\ &\ typography_00000.png);
   height: 90vh;
-  width: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 #three {
   background-image: url(../img/AR\ razrabotka.png);
   height: 90vh;
-  width: 100%;
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 #four {
   background-image: url(../img/blogging.png);
   height: 90vh;
-  max-width: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 #five {
   background-image: url(../img/hard\ vfx.png);
   height: 90vh;
-  width: 100%;
 }
 #six {
   background-image: url(../img/korporat\ video.png);
   height: 90vh;
-  width: 100%;
 }
 #seven {
   background-image: url(../img/music\ clip.png);
   height: 90vh;
-  width: 100vw;
 }
 #eight {
-  background: url(../img/reportazh.png) no-repeat center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-image: url(../img/reportazh.png);
   height: 90vh;
-  width: 100%;
 }
 #nine {
   background-image: url(../img/video\ reklama.jpg);
   height: 90vh;
-  width: 100%;
 }
 
 /* -------- IDs ---------- */
@@ -137,10 +107,8 @@
 .img-page {
   background-repeat: no-repeat;
   background-position: center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
+  background-attachment: scroll;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -311,6 +279,10 @@
 @media (min-width: 768px) {
   .nav-link {
     font-size: 0.7rem;
+  }
+
+  .img-page {
+    background-attachment: fixed;
   }
 }
 
