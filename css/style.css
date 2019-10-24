@@ -57,6 +57,7 @@
 #one {
   background: url(../img/3d\ visualisation.png) center  fixed;
   height: 90vh;
+  width: auto;
 }
 #two {
   background: url(../img/anim\ &\ typography_00000.png) center fixed;
