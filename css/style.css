@@ -119,6 +119,9 @@
 .img-page {
   background-repeat: no-repeat;
   background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   color: #ffffff;
   display: flex;
