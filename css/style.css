@@ -57,12 +57,14 @@
 #one {
   background: url(../img/3d\ visualisation.png) no-repeat center fixed;
   height: 90vh;
-  /* width: auto; */
+  width: auto;
   background-size: cover;
 }
 #two {
-  background: url(../img/anim\ &\ typography_00000.png);
+  background: url(../img/anim\ &\ typography_00000.png) no-repeat center fixed;
   height: 90vh;
+  width: 100vw;
+  background-size: cover;
 }
 #three {
   background: url(../img/AR\ razrabotka.png);
