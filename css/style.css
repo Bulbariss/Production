@@ -67,12 +67,16 @@
   background-size: cover;
 }
 #three {
-  background: url(../img/AR\ razrabotka.png);
+  background: url(../img/AR\ razrabotka.png) no-repeat fixed;
   height: 90vh;
+  width: 100%;
+  background-position: center, center;
 }
 #four {
-  background: url(../img/blogging.png);
+  background: url(../img/blogging.png) no-repeat fixed;
   height: 90vh;
+  max-width: 100%;
+  background-position: center, center;
 }
 #five {
   background: url(../img/hard\ vfx.png);
@@ -109,10 +113,10 @@
 }
 
 .img-page {
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  
+   */
   color: #ffffff;
   display: flex;
   align-items: center;
