@@ -55,39 +55,39 @@
 }
 
 #one {
-  background-image: url(../img/3d\ visualisation.png);
+  background: url(../img/3d\ visualisation.png) center  fixed;
   height: 90vh;
 }
 #two {
-  background-image: url(../img/anim\ &\ typography_00000.png);
+  background: url(../img/anim\ &\ typography_00000.png) center fixed;
   height: 90vh;
 }
 #three {
-  background-image: url(../img/AR\ razrabotka.png);
+  background: url(../img/AR\ razrabotka.png) center fixed;
   height: 90vh;
 }
 #four {
-  background-image: url(../img/blogging.png);
+  background: url(../img/blogging.png) center fixed;
   height: 90vh;
 }
 #five {
-  background-image: url(../img/hard\ vfx.png);
+  background: url(../img/hard\ vfx.png) center fixed;
   height: 90vh;
 }
 #six {
-  background-image: url(../img/korporat\ video.png);
+  background: url(../img/korporat\ video.png) center fixed;
   height: 90vh;
 }
 #seven {
-  background-image: url(../img/music\ clip.png);
+  background: url(../img/music\ clip.png) center fixed;
   height: 90vh;
 }
 #eight {
-  background-image: url(../img/reportazh.png);
+  background: url(../img/reportazh.png) center fixed;
   height: 90vh;
 }
 #nine {
-  background-image: url(../img/video\ reklama.jpg);
+  background: url(../img/video\ reklama.jpg) center fixed;
   height: 90vh;
 }
 
@@ -105,8 +105,7 @@
 }
 
 .img-page {
-  background-attachment: fixed;
-  background-position: center;
+  /* background-position: center; */
   background-size: cover;
   color: #ffffff;
   display: flex;
