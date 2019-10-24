@@ -62,9 +62,7 @@
 #two {
   background-image: url(../img/anim\ &\ typography_00000.png);
   height: 90vh;
-  width: auto;
-  position: fixed;
-  
+  width: 100%;
 }
 #three {
   background-image: url(../img/AR\ razrabotka.png);
@@ -120,7 +118,8 @@
 .img-page {
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  /* background-size: cover; */
+  background-size:100%;
   color: #ffffff;
   display: flex;
   align-items: center;
