@@ -55,77 +55,49 @@
 }
 
 #one {
-  background: url(../img/3d\ visualisation.png) no-repeat center fixed;
+  background-image: url(../img/3d\ visualisation.png);
   height: 90vh;
-  width: auto;
-  background-size: cover;
-  background-size:100%;
 }
 #two {
-  background: url(../img/anim\ &\ typography_00000.png) no-repeat center fixed;
+  background-image: url(../img/anim\ &\ typography_00000.png);
   height: 90vh;
-  width: 100vw;
-  background-size: cover;
+
+  
 }
 #three {
-  background: url(../img/AR\ razrabotka.png) no-repeat fixed;
+  background-image: url(../img/AR\ razrabotka.png);
   height: 90vh;
   width: 100%;
-  background-position: center, center;
 }
 #four {
-  background: url(../img/blogging.png) no-repeat fixed;
+  background-image: url(../img/blogging.png);
   height: 90vh;
   max-width: 100%;
-  background-position: center, center;
-  background-size:100%;
 }
 #five {
   background-image: url(../img/hard\ vfx.png);
   height: 90vh;
   width: 100%;
-  /* background-size:100%; */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
 }
 #six {
   background-image: url(../img/korporat\ video.png);
   height: 90vh;
   width: 100%;
-  /* background-size:100%; */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: fixed;
 }
 #seven {
   background-image: url(../img/music\ clip.png);
   height: 90vh;
   width: 100vw;
-  /* background-size:100%; */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 #eight {
   background-image: url(../img/reportazh.png);
   height: 90vh;
   width: 100%;
-  /* background-size:100%; */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 #nine {
   background-image: url(../img/video\ reklama.jpg);
   height: 90vh;
   width: 100%;
-  background-size:100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 /* -------- IDs ---------- */
@@ -142,15 +114,9 @@
 }
 
 .img-page {
-  /* background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-   */
-
-   /* background-attachment: fixed;
-   background-position: center;
-   background-size: cover; */
-
   color: #ffffff;
   display: flex;
   align-items: center;
