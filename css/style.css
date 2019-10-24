@@ -81,26 +81,42 @@
   background-size:100%;
 }
 #five {
-  background: url(../img/hard\ vfx.png);
+  background-image: url(../img/hard\ vfx.png);
   height: 90vh;
+  width: 100%;
+  /* background-size:100%; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 #six {
-  background: url(../img/korporat\ video.png);
+  background-image: url(../img/korporat\ video.png);
   height: 90vh;
+  width: 100%;
+  /* background-size:100%; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
 }
 #seven {
-  background: url(../img/music\ clip.png);
+  background-image: url(../img/music\ clip.png);
   height: 90vh;
-  background-size:100%;
+  width: 100vw;
+  /* background-size:100%; */
   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 #eight {
   background-image: url(../img/reportazh.png);
   height: 90vh;
-  width: 100vw;
-
+  width: 100%;
+  /* background-size:100%; */
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 #nine {
   background-image: url(../img/video\ reklama.jpg);
