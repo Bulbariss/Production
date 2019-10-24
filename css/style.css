@@ -92,7 +92,8 @@
   width: 100vw;
 }
 #eight {
-  background-image: url(../img/reportazh.png);
+  background: url(../img/reportazh.png) no-repeat center fixed;
+  background-size: cover;
   height: 90vh;
   width: 100%;
 }
