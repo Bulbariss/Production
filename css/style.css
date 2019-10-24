@@ -59,6 +59,7 @@
   height: 90vh;
   width: auto;
   background-size: cover;
+  background-size:100%;
 }
 #two {
   background: url(../img/anim\ &\ typography_00000.png) no-repeat center fixed;
@@ -77,6 +78,7 @@
   height: 90vh;
   max-width: 100%;
   background-position: center, center;
+  background-size:100%;
 }
 #five {
   background: url(../img/hard\ vfx.png);
@@ -89,16 +91,19 @@
 #seven {
   background: url(../img/music\ clip.png);
   height: 90vh;
+  background-size:100%;
 }
 #eight {
   background-image: url(../img/reportazh.png);
   height: 90vh;
   width: 100vw;
+  background-size:100%;
 }
 #nine {
   background-image: url(../img/video\ reklama.jpg);
   height: 90vh;
   width: 100%;
+  background-size:100%;
 }
 
 /* -------- IDs ---------- */
