@@ -55,40 +55,41 @@
 }
 
 #one {
-  background: url(../img/3d\ visualisation.png) center  fixed;
+  background: url(../img/3d\ visualisation.png) no-repeat center fixed;
   height: 90vh;
-  width: auto;
+  /* width: auto; */
+  background-size: cover;
 }
 #two {
-  background: url(../img/anim\ &\ typography_00000.png) center fixed;
+  background: url(../img/anim\ &\ typography_00000.png);
   height: 90vh;
 }
 #three {
-  background: url(../img/AR\ razrabotka.png) center fixed;
+  background: url(../img/AR\ razrabotka.png);
   height: 90vh;
 }
 #four {
-  background: url(../img/blogging.png) center fixed;
+  background: url(../img/blogging.png);
   height: 90vh;
 }
 #five {
-  background: url(../img/hard\ vfx.png) center fixed;
+  background: url(../img/hard\ vfx.png);
   height: 90vh;
 }
 #six {
-  background: url(../img/korporat\ video.png) center fixed;
+  background: url(../img/korporat\ video.png);
   height: 90vh;
 }
 #seven {
-  background: url(../img/music\ clip.png) center fixed;
+  background: url(../img/music\ clip.png);
   height: 90vh;
 }
 #eight {
-  background: url(../img/reportazh.png) center fixed;
+  background: url(../img/reportazh.png);
   height: 90vh;
 }
 #nine {
-  background: url(../img/video\ reklama.jpg) center fixed;
+  background: url(../img/video\ reklama.jpg);
   height: 90vh;
 }
 
@@ -106,12 +107,13 @@
 }
 
 .img-page {
-  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
+  
   color: #ffffff;
   display: flex;
   align-items: center;
-  width: 100vw;
 }
 
 .dark-overlay {
