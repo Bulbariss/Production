@@ -38,10 +38,12 @@
     height:auto;
     margin: 0;
     padding: 0;
+    padding-top: 45px;
+    background-color: #181D1F;
 }
 
 #text {
-  height: 150px;
+  height: 6rem;
   background-color: #181D1F;
   color: #ffffff;
   display: flex;
@@ -52,6 +54,13 @@
 #opening {
   font-size: 0;
 
+}
+
+#navbar {
+  position: fixed;
+  /* top: 0; */
+  width: 100%;
+  transition: top 0.3s;
 }
 
 #one {
@@ -98,6 +107,17 @@
     background-color: #181D1F;
 }
 
+.navbar {
+  font-size: 15px !important;
+  padding: 0 1rem;
+  z-index: 10;
+}
+
+.navbar-brand {
+  font-size: 21px;
+  padding: 7px 0;
+}
+
 .max-width {
   max-width: 1140px;
   display: flex;
@@ -114,17 +134,17 @@
   align-items: center;
 }
 
-.dark-overlay {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
 .text-on-page {
   max-width: 660px;
 }
+
+.pink-color {
+  color: #FA7268;
+  font-weight: 700;
+}
+
+/* .arrow-down {
+  /* height: 30px; */
 
 /* -------- Classes ---------- */
 
@@ -133,10 +153,10 @@
   .menu-icon {
     height: 30px;
     width: 30px;
-    position: fixed;
+    position: absolute;
     z-index: 2;
     right: 16px;
-    top: 20px;
+    top: 15px;
     cursor: pointer;
   }
   .menu-icon__line {
@@ -179,6 +199,7 @@
   .nav__content {
     position: fixed;
     top: 50%;
+    right: 0;
     transform: translate(0%, -50%);
     width: 100%;
     text-align: center;
@@ -280,15 +301,15 @@
   .nav-link {
     font-size: 0.7rem;
   }
-
-  .img-page {
-    background-attachment: fixed;
-  }
 }
 
 @media (min-width: 992px) {
   .nav-link {
     font-size: 0.9rem;
+  }
+
+  .img-page {
+    background-attachment: fixed;
   }
 }
 
