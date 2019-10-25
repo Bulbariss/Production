@@ -230,6 +230,10 @@
   .nav__list-item:hover:before {
     width: 100%;
   }
+
+  .nav-active { 
+    overflow: hidden;
+  }
   
   body.nav-active .menu-icon__line {
     background-color: #000;
