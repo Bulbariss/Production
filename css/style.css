@@ -370,11 +370,13 @@ and (max-device-width: 767px) {
   .nav__list-item {
     display: inline-block;
     margin: 1rem;
-  }
-
-  body {
     overflow: hidden;
   }
+
+  .nav__content {
+    top: 50%;
+  }
+
 }
 
 /* -------- Media Qs ---------- */
