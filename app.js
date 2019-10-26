@@ -136,18 +136,3 @@ $("a.nav-link, a.smooth-scr").on('click', function (event) {
 //   }
 //   prevScrollpos = currentScrollPos;
 // }
-
-
-
-
-
-
-
-
-
-// {
-//   duration: 800,
-//   specialEasing: {
-//     width: "linear",
-//     height: "easeOutBounce"
-//   },
