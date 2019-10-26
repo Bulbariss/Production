@@ -370,6 +370,9 @@ and (max-device-width: 767px) {
   .nav__list-item {
     display: inline-block;
     margin: 1rem;
+  }
+
+  body.nav-active #navbar {
     overflow: hidden;
   }
 
