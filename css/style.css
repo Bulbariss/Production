@@ -6,6 +6,8 @@
   
   html, body {
     height: 100%;
+    width: 100%;
+    background-color: #181D1F;
   }
   a,
   a:visited,
@@ -32,6 +34,15 @@
     width: 100%;
   }
 
+  /* nav {
+    transform: translateZ(0);
+    -moz-transform: translatez(0);
+    -ms-transform: translatez(0);
+    -o-transform: translatez(0);
+    -webkit-transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+  } */
+
 /* -------- IDs ---------- */
 #myVideo {
     width: 100vw;
@@ -57,47 +68,48 @@
 }
 
 #navbar {
-  position: fixed;
-  /* top: 0; */
+  /* position: relative; */
+  top: 0;
+  left: 0;
   width: 100%;
-  transition: top 0.3s;
+  
+
+  background-color: #181D1F;
+  /* transition: top 0.3s; */
+  transition: all 0.5s;
+  -webkit-overflow-scrolling: touch;
+}
+
+#navbar.scrollUp {
+  transform: translateY(-80px);
 }
 
 #one {
   background-image: url(../img/3d\ visualisation.png);
-  height: 90vh;
 }
 #two {
   background-image: url(../img/anim\ &\ typography_00000.png);
-  height: 90vh;
 }
 #three {
   background-image: url(../img/AR\ razrabotka.png);
-  height: 90vh;
 }
 #four {
   background-image: url(../img/blogging.png);
-  height: 90vh;
 }
 #five {
   background-image: url(../img/hard\ vfx.png);
-  height: 90vh;
 }
 #six {
   background-image: url(../img/korporat\ video.png);
-  height: 90vh;
 }
 #seven {
   background-image: url(../img/music\ clip.png);
-  height: 90vh;
 }
 #eight {
   background-image: url(../img/reportazh.png);
-  height: 90vh;
 }
 #nine {
   background-image: url(../img/video\ reklama.jpg);
-  height: 90vh;
 }
 
 /* -------- IDs ---------- */
@@ -132,6 +144,7 @@
   color: #ffffff;
   display: flex;
   align-items: center;
+  height: 90vh;
 }
 
 .text-on-page {
@@ -198,7 +211,7 @@
   }
   .nav__content {
     position: fixed;
-    top: 50%;
+    top: 60%;
     right: 0;
     transform: translate(0%, -50%);
     width: 100%;
