@@ -99,17 +99,45 @@ $("a").on('click', function (event) {
   }
 });
 
-/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementById("navbar").style.top = "0";
-  } else {
-    document.getElementById("navbar").style.top = "-45px";
-  }
-  prevScrollpos = currentScrollPos;
-}
+// /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
+// var prevScrollpos = window.pageYOffset;
+// window.onscroll = function() {
+//   var currentScrollPos = window.pageYOffset;
+//   if (prevScrollpos > currentScrollPos) {
+//     document.getElementById("navbar").style.top = "0";
+//   } else {
+//     document.getElementById("navbar").style.top = "-45px";
+//   }
+//   prevScrollpos = currentScrollPos;
+// }
+
+
+
+$(document).ready(function () {
+  
+  'use strict';
+  
+   var c, currentScrollTop = 0,
+       navbar = $('#navbar');
+
+   $(window).scroll(function () {
+      var a = $(window).scrollTop();
+      var b = 45;
+     
+      currentScrollTop = a;
+     
+      if (c < currentScrollTop && a > b + b) {
+        navbar.addClass("scrollUp");
+      } else if (c > currentScrollTop && !(a <= b)) {
+        navbar.removeClass("scrollUp");
+      }
+      c = currentScrollTop;
+  });
+  
+});
+
+
+
 
 
 // {
