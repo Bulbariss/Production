@@ -64,7 +64,7 @@ img {
   width: 100%;
   z-index: 9998;
   /* transition: top 0.3s; */
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 #navbar.scrollUp {
@@ -149,10 +149,25 @@ img {
   max-width: 660px;
 }
 
+.h-text-style {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.p-text-style {
+  font-size: 25px;
+  font-weight: 200;
+}
+
 .pink-color {
   color: #FA7268;
   font-weight: 700;
 }
+
+.btn {
+  border-radius: 0.5rem;
+}
+
 /* -------- Classes ---------- */
 
 /* ----------------------- Nav Menu ------------------------- */
@@ -365,21 +380,58 @@ body.nav-active .nav__list-item:nth-child(9) {
 
 @media (min-width: 1200px) {}
 
+@media (max-width: 1200px) {
+  .h-text-style {
+    font-size: 30px;
+  }
+  
+  .p-text-style {
+    font-size: 25px;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .h-text-style {
+    font-size: 30px;
+  }
+  
+  .p-text-style {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .h-text-style {
+    font-size: 30px;
+  }
+  
+  .p-text-style {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .h-text-style {
+    font-size: 35px;
+  }
+  
+  .p-text-style {
+    font-size: 25px;
+  }
+}
 @media screen and (orientation:landscape)
 and (max-device-width: 767px) {
   .nav__list-item {
     display: inline-block;
     margin: 1rem;
-  }
-
-  body.nav-active #navbar {
     overflow: hidden;
   }
-
+  
   .nav__content {
     top: 50%;
   }
-
+  
 }
 
 /* -------- Media Qs ---------- */
