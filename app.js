@@ -1,3 +1,4 @@
+console.clear();
 // Menu
 var app = function () {
   var body;
@@ -27,6 +28,31 @@ var app = function () {
 
   init();
 }();
+
+
+// ScrollTop Menu
+$(document).ready(function () {
+  
+  'use strict';
+  
+   var c, currentScrollTop = 0,
+       navbar = $('#navbar');
+
+   $(window).scroll(function () {
+      var a = $(window).scrollTop();
+      var b = 45;
+     
+      currentScrollTop = a;
+     
+      if (c < currentScrollTop && a > b + b) {
+        navbar.addClass("scrollUp");
+      } else if (c > currentScrollTop && !(a <= b)) {
+        navbar.removeClass("scrollUp");
+      }
+      c = currentScrollTop;
+  });
+  
+});
 
 // Cubic-Bezier for jquery
 (function(factory) {
@@ -83,7 +109,7 @@ $('#year').text(new Date().getFullYear());
 $('body').scrollspy({ target: '#main-nav' });
 
 // Smooth Scrolling
-$("a").on('click', function (event) {
+$("a.nav-link, a.smooth-scr").on('click', function (event) {
   if (this.hash !== "") {
     event.preventDefault();
 
@@ -113,28 +139,7 @@ $("a").on('click', function (event) {
 
 
 
-$(document).ready(function () {
-  
-  'use strict';
-  
-   var c, currentScrollTop = 0,
-       navbar = $('#navbar');
 
-   $(window).scroll(function () {
-      var a = $(window).scrollTop();
-      var b = 45;
-     
-      currentScrollTop = a;
-     
-      if (c < currentScrollTop && a > b + b) {
-        navbar.addClass("scrollUp");
-      } else if (c > currentScrollTop && !(a <= b)) {
-        navbar.removeClass("scrollUp");
-      }
-      c = currentScrollTop;
-  });
-  
-});
 
 
 
