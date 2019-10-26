@@ -212,12 +212,12 @@ img {
 
 .nav__content {
   position: fixed;
-  top: 50%;
+  top: 60%;
   right: 0;
   transform: translate(0%, -50%);
   width: 100%;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 200;
 }
 
@@ -370,6 +370,10 @@ and (max-device-width: 767px) {
   .nav__list-item {
     display: inline-block;
     margin: 1rem;
+  }
+
+  body {
+    overflow: hidden;
   }
 }
 
