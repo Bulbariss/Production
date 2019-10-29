@@ -114,8 +114,9 @@ img {
 
 /* -------- Classes ---------- */
 .img-page img {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  /* height: 100px; */
+  display: block;
   color: #fff;
   fill: red;
   stroke: #fff;
@@ -158,10 +159,11 @@ img {
 
 .text-on-page {
   max-width: 660px;
+  margin-top: 60px;
 }
 
 .h-text-style {
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 500;
 }
 
@@ -177,6 +179,11 @@ img {
 
 .btn {
   border-radius: 0.5rem;
+  width: 144px;
+  height: 42px;
+  font-size: 1rem;
+  font-weight: 300;
+  /* margin-top: 4px; */
 }
 
 /* -------- Classes ---------- */
@@ -389,7 +396,8 @@ body.nav-active .nav__list-item:nth-child(9) {
   }
 
   .contents-on-page {
-    padding-left: 5rem;
+    padding: 0 6rem;
+  
   }
 }
 
@@ -397,7 +405,7 @@ body.nav-active .nav__list-item:nth-child(9) {
 
 @media (max-width: 1200px) {
   .h-text-style {
-    font-size: 30px;
+    font-size: 35px;
   }
   
   .p-text-style {
