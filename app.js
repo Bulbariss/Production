@@ -29,7 +29,6 @@ var app = function () {
   init();
 }();
 
-
 // ScrollTop Menu
 $(document).ready(function () {
   
@@ -44,10 +43,12 @@ $(document).ready(function () {
      
       currentScrollTop = a;
      
-      if (c < currentScrollTop && a > b + b) {
-        navbar.addClass("scrollUp");
-      } else if (c > currentScrollTop && !(a <= b)) {
-        navbar.removeClass("scrollUp");
+      if (!document.body.classList.contains("nav-active")) {
+        if (c < currentScrollTop && a > b + b) {
+          navbar.addClass("scrollUp");
+        } else if (c > currentScrollTop && !(a <= b)) {
+          navbar.removeClass("scrollUp");
+        }
       }
       c = currentScrollTop;
   });

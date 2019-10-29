@@ -247,7 +247,8 @@ img {
 .nav__content {
   position: fixed;
   top: 60%;
-  right: 0;
+  /* right: 0; */
+  left: -100vw;
   transform: translate(0%, -50%);
   width: 100%;
   text-align: center;
@@ -259,6 +260,11 @@ img {
   pointer-events: none;
   cursor: default;
   margin: 0;
+}
+
+body.nav-active .nav__content {
+  right: 0;
+  left: 0;
 }
 
 body.nav-active .nav__list {
@@ -519,7 +525,7 @@ and (max-device-height: 576px)  {
   }
 } */
 
-@media (max-height: 400px) {
+@media (max-height: 576px) {
   .nav__list-item {
     display: inline-block;
     margin: 1rem;
