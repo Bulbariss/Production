@@ -117,7 +117,7 @@ $("a.nav-link, a.smooth-scr").on('click', function (event) {
 
     $('html, body').animate({
       scrollTop: $(hash).offset().top
-    }, 900, $.bez([0.39, 0.575, 0.565, 1]), function () {
+    }, 900, $.bez([.86,.61,.13,.41]), function () {
 
       window.location.hash = hash;
       
