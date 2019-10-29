@@ -525,7 +525,8 @@ and (max-device-height: 576px)  {
   }
 } */
 
-@media (max-height: 576px) {
+@media screen and (orientation:landscape)
+and (max-height: 576px) {
   .nav__list-item {
     display: inline-block;
     margin: 1rem;
