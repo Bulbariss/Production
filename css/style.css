@@ -47,11 +47,15 @@ img {
 }
 
 #text {
-  height: 6rem;
+  height: 5rem;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#text h4 {
+  font-weight: 300;
 }
 
 #opening {
@@ -72,44 +76,51 @@ img {
 }
 
 #one {
-  background-image: url(../img/3d\ visualisation.png);
-}
-
-#two {
-  background-image: url(../img/anim\ &\ typography_00000.png);
-}
-
-#three {
-  background-image: url(../img/AR\ razrabotka.png);
-}
-
-#four {
-  background-image: url(../img/blogging.png);
-}
-
-#five {
   background-image: url(../img/hard\ vfx.png);
 }
 
+#two {
+  background-image: url(../img/video\ reklama.jpg);
+}
+#three {
+  background-image: url(../img/blogging.png);
+}
+
+#four {
+  background-image: url(../img/anim\ &\ typography_00000.png);
+}
+
+#five {
+  background-image: url(../img/3d\ visualisation.png);
+}
+
 #six {
-  background-image: url(../img/korporat\ video.png);
+  background-image: url(../img/AR\ razrabotka.png);
 }
 
 #seven {
-  background-image: url(../img/music\ clip.png);
-}
-
-#eight {
   background-image: url(../img/reportazh.png);
 }
 
+#eight {
+  background-image: url(../img/music\ clip.png);
+}
+
 #nine {
-  background-image: url(../img/video\ reklama.jpg);
+  background-image: url(../img/korporat\ video.png);
 }
 
 /* -------- IDs ---------- */
 
 /* -------- Classes ---------- */
+.img-page img {
+  width: 100px;
+  height: 100px;
+  color: #fff;
+  fill: red;
+  stroke: #fff;
+}
+
 .nav-bg-col {
   background-color: #181D1F;
 }
@@ -207,7 +218,7 @@ img {
 .navg:before,
 .navg:after {
   content: "";
-  position: fixed;
+  /* position: fixed; */
   width: 100vw;
   height: 100vh;
   background: rgba(234, 234, 234, 0.2);
@@ -376,6 +387,10 @@ body.nav-active .nav__list-item:nth-child(9) {
   .img-page {
     background-attachment: fixed;
   }
+
+  .contents-on-page {
+    padding-left: 5rem;
+  }
 }
 
 @media (min-width: 1200px) {}
@@ -409,6 +424,11 @@ body.nav-active .nav__list-item:nth-child(9) {
   .p-text-style {
     font-size: 20px;
   }
+
+  .navg:before,
+  .navg:after {
+    position: fixed;
+  }
 }
 
 @media (max-width: 576px) {
@@ -420,8 +440,9 @@ body.nav-active .nav__list-item:nth-child(9) {
     font-size: 25px;
   }
 }
-@media screen and (orientation:landscape)
-and (max-device-width: 767px) {
+/* @media screen and (orientation:landscape)
+and (max-device-width: 800px)
+and (max-device-height: 576px)  {
   .nav__list-item {
     display: inline-block;
     margin: 1rem;
@@ -431,7 +452,23 @@ and (max-device-width: 767px) {
   .nav__content {
     top: 50%;
   }
+} */
+
+@media (max-height: 400px) {
+  .nav__list-item {
+    display: inline-block;
+    margin: 1rem;
+    overflow: hidden;
+  }
   
+  .nav__content {
+    top: 50%;
+  }
+
+  .navg:before,
+  .navg:after {
+    position: fixed;
+  }
 }
 
 /* -------- Media Qs ---------- */
