@@ -125,3 +125,7 @@ $("a.nav-link, a.smooth-scr").on('click', function (event) {
     });
   }
 });
+
+AOS.init({
+  once: true,
+});
