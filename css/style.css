@@ -40,7 +40,7 @@ img {
 /* Фон выделения цвет */
 ::selection {
   background-color: #ddd;
-  /* color: #f1f1f1; */
+  color: #fff;
 }
 
 /* -------- IDs ---------- */
@@ -139,6 +139,7 @@ img {
 
 .navbar-nav {
   z-index: 9998;
+  font-weight: 300;
 }
 
 .navbar-brand {
@@ -184,30 +185,37 @@ img {
 }
 
 .btn { 
-  /* border-radius: 0.5rem; */
-  /* width: 144px; */
-  /* height: 42px; */
-  /* font-size: 1rem; */
-  /* font-weight: 300; */
-  /* margin-top: 4px; */
-  /* border: 2px solid #fda085; */
-
   height: 38px;
   padding: 0 30px;
-  /* color: #555; */
   text-align: center;
   font-size: 14px;
   font-weight: 200;
   line-height: 36px;
-  /* letter-spacing: .1rem; */
-  /* text-transform: uppercase; */
   text-decoration: none;
   white-space: nowrap;
   background-color: transparent;
   border-radius: 6px;
   border: 1px solid #bbb;
   cursor: pointer;
+ }
 
+ .btn-modal {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #696cff;
+  font-weight: 600;
+  color: #fff;
+ }
+
+ #form-img {
+  height: 5rem;
+  width: auto;
+  margin-right: 1rem;
+ }
+
+ .modal button img {
+  height: 2.2rem;
+  width: auto;
  }
 
 /* -------- Classes ---------- */
@@ -567,3 +575,82 @@ and (max-height: 576px) {
 }
 
 /* -------- Media Qs ---------- */
+
+
+/* Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #696cff;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+
+#contact-form p {
+    display: none;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.invalid-form {
+  border-color: #dc3545 !important;
+}
+
+.invalid-form-text {
+  display: block !important;
+}

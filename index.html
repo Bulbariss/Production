@@ -5,6 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.0/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+        emailjs.init('user_Wu8lnXf7DyJRu3jNjcBxa');
+    })();
+</script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
     integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -135,8 +141,8 @@
       <div class="text-on-page">
         <h4 class="h-text-style">Инфографика и анимация</h4>
         <p class="p-text-style">Поможем произвести правильное впечатление</p>
+        <a target="_blank" href="#" role="button" class="btn ">Смотреть</a>
       </div>
-      <a target="_blank" href="#" role="button" class="btn ">Смотреть</a>
     </div>
   </section>
 
@@ -211,7 +217,7 @@
       <div class="text-on-page">
         <h4 class="h-text-style">Команда</h4>
         <p class="p-text-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-           Amet odio iste pariatur ipsum temporibus? Quod adipisci beatae natus quasi vitae.</p>
+          Amet odio iste pariatur ipsum temporibus? Quod adipisci beatae natus quasi vitae.</p>
       </div>
     </div>
   </section>
@@ -223,6 +229,54 @@
         <div class="col ">
           <p class="text-white m-0"> <span id="year"></span> Final Vision &copy;
           </p>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Написать
+          </button>
+
+          <!-- Modal -->
+          <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center">
+                        <img src="img/ios-email-outline.svg" id="form-img" alt="mail">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Отправьте нам запрос</h5>
+                    </div>
+                  <button id="close-modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <!-- <span aria-hidden="true">&times;</span> -->
+                    <img src="img/ios-close.svg" alt="mail">
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="contact-form">
+                    <div id="email-input">
+                        <label class="text-left" for="exampleMessage">Ваша почта</label>
+                        <input class="w-100 mb-1 " type="text" placeholder="test@mailbox.com" id="input-email">
+                        <p id="input-email-p">Введите корректный адрес</p>
+                    </div>
+                    <div id="name-input">
+                        <label class="text-left" for="exampleMessage">Ваше имя</label>
+                        <input class="w-100 d-flex mb-1 " type="text" placeholder="Василий" id="input-name">
+                        <p id="input-name-p">Введите имя</p>
+                    </div>
+                    <div id="phone-input">
+                        <label class="text-left" for="exampleMessage">Ваш номер</label>
+                        <input class="w-100 d-flex mb-1 " type="text" placeholder="Номер" id="input-phone" pattern="^[0-9]+$">
+                        <p id="input-phone-p">Введите номер</p>
+                    </div>
+                    <div id="message-input">
+                        <label class="text-left" for="exampleMessage">Описание</label>
+                        <textarea class="w-100 " placeholder="Сообщение" id="input-message"></textarea>
+                        <p id="input-message-p">Введите сообщение</p>
+                    </div>
+                    <input class="btn btn-modal" type="submit" value="Отправить">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
