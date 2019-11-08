@@ -230,7 +230,7 @@ img {
   padding-top: 8px;
  }
 
- .modal-body label:first-child {
+ #email-input label {
    padding-top: 0;
  }
 
