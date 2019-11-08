@@ -108,8 +108,6 @@ $(document).ready(function () {
   });
 }));
 
-
-
 // Get the current year for the copyright
 $('#year').text(new Date().getFullYear());
 
@@ -119,10 +117,10 @@ $('body').scrollspy({
 });
 
 // Smooth Scrolling
-$("a.nav-link, a.smooth-scr").on('click', function (event) {
-  if (this.hash !== "") {
+function smoothScroll(event) {
+  var x = window.matchMedia("(max-width: 767px)");
+  if (this.hash !== "" && !x.matches) {
     event.preventDefault();
-
     const hash = this.hash;
 
     $('html, body').animate({
@@ -133,7 +131,8 @@ $("a.nav-link, a.smooth-scr").on('click', function (event) {
 
     });
   }
-});
+}
+$("a.nav-link, a.smooth-scr").on('click', smoothScroll);
 
 AOS.init({
   once: true,
@@ -163,45 +162,47 @@ window.onload = function () {
     "message_P_ID": document.getElementById("input-message-p"),
     "modalID": document.getElementById('exampleModalCenter')
   }
+  // Regex for validating inputs
   const regexName = /^[а-яА-ЯёЁa-zA-Z0-9]+$/i;
   const regexEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   const regexPhone = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 
   // Functions
+  // Clear invalid form propery from passed cell
   function invalidInput(id) {
     document.getElementById(`${id}`).classList.add("invalid-form");
     document.getElementById(`${id}-p`).classList.add("invalid-form-text");
   }
-
+  // Set invalid form propery from passed cell
   function validInput(id) {
     document.getElementById(`${id}`).classList.remove("invalid-form");
     document.getElementById(`${id}-p`).classList.remove("invalid-form-text");
   }
-
+  // Clear all input from cells
   function clearForm() {
     IDs.nameID.value = null;
     IDs.emailID.value = null;
     IDs.phoneID.value = null;
     IDs.messageID.value = null;
   }
-
+  // Close modal by clicking on close button
   function closeModal() {
     document.getElementById('close-modal').click();
   }
-
+  // If modal is closed clear inputs and remove invalid input property
   function closedModal() {
     if (!IDs.modalID.classList.contains('show')) {
       clearInvalidInput();
       clearForm();
     }
   }
-
+  // If enter is pressed call for email submit
   function submitOnEnter(event) {
     if (event.keyCode == 13 && IDs.modalID.classList.contains('show')) {
       submitEmail(event);
     }
   }
-
+  // Clear all invalid input properties
   function clearInvalidInput() {
     IDs.nameID.classList.remove("invalid-form");
     IDs.emailID.classList.remove("invalid-form");
@@ -212,7 +213,7 @@ window.onload = function () {
     IDs.phone_P_ID.classList.remove("invalid-form-text");
     IDs.message_P_ID.classList.remove("invalid-form-text");
   }
-
+  // Check if cell input is valid
   function validateName() {
     let from_name = document.querySelector("#input-name").value;
     if (regexName.test(from_name) || from_name === 0) {
@@ -223,7 +224,7 @@ window.onload = function () {
       name = false;
     }
   }
-
+  // Check if cell input is valid
   function validateEmail() {
     let to_name = document.querySelector("#input-email").value;
     if (regexEmail.test(to_name) || !to_name.length === 0) {
@@ -234,7 +235,7 @@ window.onload = function () {
       email = false;
     }
   }
-
+  // Check if cell input is valid
   function validatePhone() {
     let phone_number = document.querySelector("#input-phone").value;
     if (regexPhone.test(phone_number) || phone_number === 0) {
@@ -245,7 +246,7 @@ window.onload = function () {
       phone = false;
     }
   }
-
+  // Check if cell input is valid
   function validateMessage() {
     let message_html = document.querySelector("#input-message").value;
     if (!message_html.length === 0 || message_html.trim()) {
@@ -256,29 +257,50 @@ window.onload = function () {
       message = false;
     }
   }
-
+  // Show success message
+  function showSuccess() {
+    document.getElementById('modal-body').classList.add('visibility-hidden');
+    document.getElementById('success').classList.remove('visibility-hidden');
+    // clearInvalidInput();
+    // clearForm();
+    // setTimeout(function () {
+    //   // closeModal();
+    //   document.getElementById('modal-body').classList.remove('visibility-hidden');
+    //   document.getElementById('success').classList.add('visibility-hidden');
+    // }, 6000);
+  }
+  // Show error message
+  function showError() {
+    document.getElementById('failure').classList.remove('visibility-hidden');
+    // setTimeout(function() {
+    //   document.getElementById('failure').classList.add('visibility-hidden');
+    // }, 4000);
+  }
+  
   // Event Listeners
   IDs.nameID.addEventListener("focusout", validateName);
   IDs.emailID.addEventListener("focusout", validateEmail);
   IDs.phoneID.addEventListener("focusout", validatePhone);
   IDs.messageID.addEventListener("focusout", validateMessage);
-  document.addEventListener('click', closedModal)
+  document.addEventListener('click', closedModal);
   document.getElementById('contact-form').addEventListener('submit', submitEmail);
   document.addEventListener("keypress", submitOnEnter(event));
+
 
   // Send email
   function submitEmail(event) {
 
     event.preventDefault();
-
+    // Check if all inputs are valid
     validateName();
     validateEmail();
     validatePhone();
     validateMessage();
+    // Get all data for email
     var data = {
       service_id: 'mail_ru',
       template_id: 'template_Eox7BLxl',
-      user_id: 'user_Wu8lnXf7DyJRu3jNjcBxa',
+      // user_id: 'user_Wu8lnXf7DyJRu3jNjcBxa',
       template_params: {
         "reply_to": "1",
         "from_name": IDs.nameID.value,
@@ -288,19 +310,24 @@ window.onload = function () {
       }
     };
 
+    // Send email if everything is valid
     if (name && email && phone && message) {
       $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json'
       }).done(function () {
-        alert('Your mail is sent!');
+        // alert('Your mail is sent!');
+        showSuccess();
+        
       }).fail(function (error) {
-        alert('Oops... ' + JSON.stringify(error));
+        // alert('Oops... ' + JSON.stringify(error));
+        showError();
+        // showSuccess();
       });
-      clearInvalidInput();
-      clearForm();
-      closeModal();
-    } 
+      
+    }
   }
 }
+
+

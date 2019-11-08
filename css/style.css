@@ -201,21 +201,37 @@ img {
 
  .btn-modal {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 1rem;
   background-color: #696cff;
   font-weight: 600;
   color: #fff;
  }
 
+ .modal-header {
+   padding: 1.5625rem;
+ }
+
+ #close-modal {
+  font-size: 0 ;
+ }
+
  #form-img {
-  height: 5rem;
+  height: 3rem;
   width: auto;
   margin-right: 1rem;
  }
 
- .modal button img {
-  height: 2.2rem;
+ #svg-close {
+  height: 1rem;
   width: auto;
+ }
+
+ .modal-body label {
+  padding-top: 8px;
+ }
+
+ .modal-body label:first-child {
+   padding-top: 0;
  }
 
 /* -------- Classes ---------- */
@@ -647,10 +663,56 @@ label > .label-body {
     color: #dc3545;
 }
 
+.modal {
+  /* transition: all 0.5s  ease-in-out; */
+  transition: all 2s ease-in-out;
+}
+
 .invalid-form {
   border-color: #dc3545 !important;
 }
 
 .invalid-form-text {
   display: block !important;
+}
+
+p#sent-successfully {
+  display: inline;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+ p#sent-unsuccessfully {
+  display: block;
+  color: #181D1F;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0 1.5625rem 1.5625rem 1.5625rem;
+  color: #dc3545;
+  /* transition: all 0.5s  ease-in-out; */
+  /* transition: visibility 0.3s, opacity 0.5s, height 1s, linear ; */
+  transition: all 2s linear;
+}
+
+#svg-sent {
+  width: 4.2rem;
+  margin: 0 1rem 0 0;
+}
+
+#success {
+  padding:1.5625rem;
+  color: #44bd32;
+}
+#success,
+#failure {
+  transition: visibility 2s, opacity 2s, ease-in-out ;
+}
+
+.visibility-hidden {
+  visibility: hidden !important;
+  opacity: 0;
+  height: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
