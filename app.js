@@ -198,7 +198,8 @@ window.onload = function () {
       console.log('!!!');
     } else {
       console.log('???');
-      document.getElementById('navbar').classList.remove("hide-element");
+      document.getElementById('navbar').classList.remove("scrollUp");
+      // document.getElementById('navbar').classList.remove("hide-element");
     }
     // document.getElementById('navbar').classList.remove("hide-element");
     
@@ -291,7 +292,8 @@ window.onload = function () {
     var y = window.matchMedia("(max-height: 575px)");
     
     if (x.matches || y.matches) {
-      document.getElementById('navbar').classList.add("hide-element");
+      // document.getElementById('navbar').classList.add("hide-element");
+      document.getElementById('navbar').classList.add("scrollUp");
     }
     // console.log('!!!');
   }
