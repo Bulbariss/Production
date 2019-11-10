@@ -45,10 +45,10 @@ $(document).ready(function () {
 
     currentScrollTop = a;
 
-    if (!document.body.classList.contains("nav-active") && (!x.matches || !y.matches)) {
+    if (!document.body.classList.contains("nav-active") && (!x.matches || !y.matches) && !(a <= b) && !document.getElementById('exampleModalCenterTitle').classList.contains('show')) {
       if (c < currentScrollTop && a > b + b ) {
         navbar.addClass("scrollUp");
-      } else if (c > currentScrollTop && !(a <= b) && !document.getElementById('exampleModalCenterTitle').classList.contains('show')) {
+      } else if (c > currentScrollTop) {
         navbar.removeClass("scrollUp");
       }
     }
@@ -199,6 +199,7 @@ window.onload = function () {
     } else {
       console.log('???');
       document.getElementById('navbar').classList.remove("scrollUp");
+      document.getElementsByTagName('BODY')[0].classList.remove('scroll-lock');
       // document.getElementById('navbar').classList.remove("hide-element");
     }
     // document.getElementById('navbar').classList.remove("hide-element");
@@ -294,6 +295,7 @@ window.onload = function () {
     if (x.matches || y.matches) {
       // document.getElementById('navbar').classList.add("hide-element");
       document.getElementById('navbar').classList.add("scrollUp");
+      document.getElementsByTagName('BODY')[0].classList.add('scroll-lock');
     }
     // console.log('!!!');
   }

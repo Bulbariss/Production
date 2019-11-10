@@ -734,6 +734,6 @@ p#sent-successfully {
   padding: 0 !important;
 }
 
-#exampleModalCenter .show {
+.scroll-lock {
   overflow: hidden;
 }
