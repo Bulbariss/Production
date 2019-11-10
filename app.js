@@ -46,9 +46,9 @@ $(document).ready(function () {
     currentScrollTop = a;
 
     if (!document.body.classList.contains("nav-active") && (!x.matches || !y.matches)) {
-      if (c < currentScrollTop && a > b + b) {
+      if (c < currentScrollTop && a > b + b ) {
         navbar.addClass("scrollUp");
-      } else if (c > currentScrollTop && !(a <= b)) {
+      } else if (c > currentScrollTop && !(a <= b) && !document.getElementById('exampleModalCenterTitle').classList.contains('show')) {
         navbar.removeClass("scrollUp");
       }
     }
