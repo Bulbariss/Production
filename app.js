@@ -34,7 +34,8 @@ var app = function () {
 $(document).ready(function () {
 
   'use strict';
-
+  var x = window.matchMedia("(min-width: 575px)");
+  var y = window.matchMedia("(min-height: 575px)");
   var c, currentScrollTop = 0,
     navbar = $('#navbar');
 
@@ -44,7 +45,7 @@ $(document).ready(function () {
 
     currentScrollTop = a;
 
-    if (!document.body.classList.contains("nav-active")) {
+    if (!document.body.classList.contains("nav-active") && (!x.matches || !y.matches)) {
       if (c < currentScrollTop && a > b + b) {
         navbar.addClass("scrollUp");
       } else if (c > currentScrollTop && !(a <= b)) {
@@ -192,9 +193,15 @@ window.onload = function () {
   // If modal is closed clear inputs and remove invalid input property
   function closedModal() {
     if (!IDs.modalID.classList.contains('show')) {
-      clearInvalidInput();
-      clearForm();
+      // clearInvalidInput();
+      // clearForm();
+      console.log('!!!');
+    } else {
+      console.log('???');
+      document.getElementById('navbar').classList.remove("hide-element");
     }
+    // document.getElementById('navbar').classList.remove("hide-element");
+    
   }
   // If enter is pressed call for email submit
   function submitOnEnter(event) {
@@ -261,29 +268,48 @@ window.onload = function () {
   function showSuccess() {
     document.getElementById('modal-body').classList.add('visibility-hidden');
     document.getElementById('success').classList.remove('visibility-hidden');
-    // clearInvalidInput();
-    // clearForm();
-    // setTimeout(function () {
-    //   // closeModal();
-    //   document.getElementById('modal-body').classList.remove('visibility-hidden');
-    //   document.getElementById('success').classList.add('visibility-hidden');
-    // }, 6000);
+    clearInvalidInput();
+    clearForm();
+    setTimeout(function () {
+      // closeModal();
+      document.getElementById('modal-body').classList.remove('visibility-hidden');
+      document.getElementById('success').classList.add('visibility-hidden');
+    }, 6000);
   }
   // Show error message
   function showError() {
     document.getElementById('failure').classList.remove('visibility-hidden');
-    // setTimeout(function() {
-    //   document.getElementById('failure').classList.add('visibility-hidden');
-    // }, 4000);
+    setTimeout(function() {
+      document.getElementById('failure').classList.add('visibility-hidden');
+    }, 4000);
+  }
+
+  function hideNavbar() {
+
+
+    var x = window.matchMedia("(max-width: 575px)");
+    var y = window.matchMedia("(max-height: 575px)");
+    
+    if (x.matches || y.matches) {
+      document.getElementById('navbar').classList.add("hide-element");
+    }
+    // console.log('!!!');
   }
   
   // Event Listeners
+
+  // Validate inputs on focus out
   IDs.nameID.addEventListener("focusout", validateName);
   IDs.emailID.addEventListener("focusout", validateEmail);
   IDs.phoneID.addEventListener("focusout", validatePhone);
   IDs.messageID.addEventListener("focusout", validateMessage);
-  document.addEventListener('click', closedModal);
+  // When modal button is pressed hide navbar on phones
+  document.getElementById('btn-trigger-modal').addEventListener('click', hideNavbar);
+  // When modal closes show navbar
+  document.getElementById('exampleModalCenter').addEventListener('click', closedModal);
+  // Send email on submit
   document.getElementById('contact-form').addEventListener('submit', submitEmail);
+  // Submit on enter press
   document.addEventListener("keypress", submitOnEnter(event));
 
 

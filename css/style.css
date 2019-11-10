@@ -164,6 +164,11 @@ img {
   height: 90vh;
 }
 
+.hide-element {
+  visibility: hidden;
+  height: 0;
+}
+
 .text-on-page {
   max-width: 660px;
   margin-top: 60px;
@@ -557,6 +562,18 @@ body.nav-active .nav__list-item:nth-child(9) {
   .p-text-style {
     font-size: 20px;
   }
+
+  /* .modal-content {
+    border: none;
+    border-radius: 0;
+    height: 100vh;
+  }
+
+  .modal-dialog {
+    margin: 0;
+  } */
+
+  
 }
 /* @media screen and (orientation:landscape)
 and (max-device-width: 800px)
