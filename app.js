@@ -1,54 +1,44 @@
-console.clear();
 // Menu
-var app = function () {
-  var body;
-  var menu;
-  var menuItems;
-  var init = function init() {
-    body = document.querySelector('body');
-    menu = document.querySelector('.menu-icon');
-    menuItems = document.querySelectorAll('.nav__list-item');
-    applyListeners();
+(function () {
+  const body = document.getElementsByTagName('BODY')[0];
+  const menu = document.querySelector('.menu-icon');
+  const menuItems = document.querySelectorAll('.nav__list-item');
+  const toggleClass = function toggleClass() {
+    if (body.classList.contains('nav-active')) body.classList.remove('nav-active');
+    else body.classList.add('nav-active');
   };
-
-  var applyListeners = function applyListeners() {
-    menu.addEventListener('click', function () {
-      return toggleClass(body, 'nav-active');
+  const applyListeners = function applyListeners() {
+    menu.addEventListener('click', () => {
+      toggleClass();
     });
-    for (var i = 0; i < menuItems.length; i++) {
-      menuItems[i].addEventListener('click', function () {
-        return toggleClass(body, 'nav-active');
+    for (let i = 0; i < menuItems.length; i + 1) {
+      menuItems[i].addEventListener('click', () => {
+        toggleClass();
       });
     }
   };
 
-  var toggleClass = function toggleClass(element, stringClass) {
-    if (element.classList.contains(stringClass)) element.classList.remove(stringClass);
-    else element.classList.add(stringClass);
-  };
-
-  init();
-}();
+  applyListeners();
+}());
 
 // ScrollTop Menu
 $(document).ready(function () {
-
   'use strict';
-  var x = window.matchMedia("(min-width: 575px)");
-  var y = window.matchMedia("(min-height: 575px)");
-  var c, currentScrollTop = 0,
+  const x = window.matchMedia("(max-width: 575px)");
+  const y = window.matchMedia("(max-height: 575px)");
+  let c, currentScrollTop = 0,
     navbar = $('#navbar');
 
   $(window).scroll(function () {
-    var a = $(window).scrollTop();
-    var b = 45;
+    let a = $(window).scrollTop();
+    let b = 45;
 
     currentScrollTop = a;
 
-    if (!document.body.classList.contains("nav-active") && (!x.matches || !y.matches) && !(a <= b) && !document.getElementById('exampleModalCenterTitle').classList.contains('show')) {
-      if (c < currentScrollTop && a > b + b ) {
+    if (!document.body.classList.contains("nav-active") && (x.matches || y.matches) && !(a <= b) && !document.getElementById('exampleModalCenterTitle').classList.contains('show')) {
+      if (c < currentScrollTop && a > b + b) {
         navbar.addClass("scrollUp");
-      } else if (c > currentScrollTop) {
+      } else if (c > currentScrollTop && !document.getElementsByTagName("BODY")[0].classList.contains("modal-open")) {
         navbar.removeClass("scrollUp");
       }
     }
@@ -74,8 +64,8 @@ $(document).ready(function () {
         encodedFuncName = 'bez_' + coOrdArray.join('_').replace(/\./g, 'p');
       }
       if (typeof $.easing[encodedFuncName] !== "function") {
-        var polyBez = function (p1, p2) {
-          var A = [null, null],
+        let polyBez = function (p1, p2) {
+          let A = [null, null],
             B = [null, null],
             C = [null, null],
             bezCoOrd = function (t, ax) {
@@ -86,7 +76,7 @@ $(document).ready(function () {
               return C[0] + t * (2 * B[0] + 3 * A[0] * t);
             },
             xForT = function (t) {
-              var x = t,
+              let x = t,
                 i = 0,
                 z;
               while (++i < 14) {
@@ -114,27 +104,24 @@ $('#year').text(new Date().getFullYear());
 
 // Init Scrollspy
 $('body').scrollspy({
-  target: '#main-nav'
+  target: '#main-nav',
 });
 
 // Smooth Scrolling
 function smoothScroll(event) {
-  var x = window.matchMedia("(max-width: 767px)");
-  if (this.hash !== "" && !x.matches) {
+  const x = window.matchMedia('(max-width: 767px)');
+  if (this.hash !== '' && !x.matches) {
     event.preventDefault();
     const hash = this.hash;
 
     $('html, body').animate({
       scrollTop: $(hash).offset().top
     }, 1000, $.bez([0.165, 0.84, 0.44, 1]), function () {
-
       window.location.hash = hash;
-
     });
   }
 }
-$("a.nav-link, a.smooth-scr").on('click', smoothScroll);
-
+$('a.nav-link, a.smooth-scr').on('click', smoothScroll);
 AOS.init({
   once: true,
 });
@@ -146,23 +133,22 @@ AOS.init({
 //   emailjs.init('user_Wu8lnXf7DyJRu3jNjcBxa');
 // })();
 window.onload = function () {
-
   // Variables
   let name = false;
   let email = false;
   let phone = false;
   let message = false;
-  let IDs = {
-    "nameID": document.getElementById("input-name"),
-    "emailID": document.getElementById("input-email"),
-    "phoneID": document.getElementById("input-phone"),
-    "messageID": document.getElementById("input-message"),
-    "name_P_ID": document.getElementById("input-name-p"),
-    "email_P_ID": document.getElementById("input-email-p"),
-    "phone_P_ID": document.getElementById("input-phone-p"),
-    "message_P_ID": document.getElementById("input-message-p"),
-    "modalID": document.getElementById('exampleModalCenter')
-  }
+  const IDs = {
+    nameID: document.getElementById('input-name'),
+    emailID: document.getElementById('input-email'),
+    phoneID: document.getElementById('input-phone'),
+    messageID: document.getElementById('input-message'),
+    name_P_ID: document.getElementById('input-name-p'),
+    email_P_ID: document.getElementById('input-email-p'),
+    phone_P_ID: document.getElementById('input-phone-p'),
+    message_P_ID: document.getElementById('input-message-p'),
+    modalID: document.getElementById('exampleModalCenter')
+  };
   // Regex for validating inputs
   const regexName = /^[а-яА-ЯёЁa-zA-Z0-9]+$/i;
   const regexEmail = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -171,13 +157,13 @@ window.onload = function () {
   // Functions
   // Clear invalid form propery from passed cell
   function invalidInput(id) {
-    document.getElementById(`${id}`).classList.add("invalid-form");
-    document.getElementById(`${id}-p`).classList.add("invalid-form-text");
+    document.getElementById(`${id}`).classList.add('invalid-form');
+    document.getElementById(`${id}-p`).classList.add('invalid-form-text');
   }
   // Set invalid form propery from passed cell
   function validInput(id) {
-    document.getElementById(`${id}`).classList.remove("invalid-form");
-    document.getElementById(`${id}-p`).classList.remove("invalid-form-text");
+    document.getElementById(`${id}`).classList.remove('invalid-form');
+    document.getElementById(`${id}-p`).classList.remove('invalid-form-text');
   }
   // Clear all input from cells
   function clearForm() {
@@ -187,82 +173,81 @@ window.onload = function () {
     IDs.messageID.value = null;
   }
   // Close modal by clicking on close button
-  function closeModal() {
-    document.getElementById('close-modal').click();
-  }
+  // function closeModal() {
+  //   document.getElementById('close-modal').click();
+  // }
   // If modal is closed clear inputs and remove invalid input property
+  // Clear all invalid input properties
+  function clearInvalidInput() {
+    IDs.nameID.classList.remove('invalid-form');
+    IDs.emailID.classList.remove('invalid-form');
+    IDs.phoneID.classList.remove('invalid-form');
+    IDs.messageID.classList.remove('invalid-form');
+    IDs.name_P_ID.classList.remove('invalid-form-text');
+    IDs.email_P_ID.classList.remove('invalid-form-text');
+    IDs.phone_P_ID.classList.remove('invalid-form-text');
+    IDs.message_P_ID.classList.remove('invalid-form-text');
+  }
+  // If modal on mobile is closed return navbar and body scroll
   function closedModal() {
-    if (!IDs.modalID.classList.contains('show')) {
-      // clearInvalidInput();
-      // clearForm();
-      console.log('!!!');
-    } else {
-      console.log('???');
-      document.getElementById('navbar').classList.remove("scrollUp");
-      document.getElementsByTagName('BODY')[0].classList.remove('scroll-lock');
-      // document.getElementById('navbar').classList.remove("hide-element");
-    }
-    // document.getElementById('navbar').classList.remove("hide-element");
-    
+    setTimeout(() => {
+      if (!IDs.modalID.classList.contains('show')) {
+        clearInvalidInput();
+        clearForm();
+        document.getElementById('navbar').classList.remove('scrollUp');
+        document.getElementsByTagName('BODY')[0].classList.remove('scroll-lock');
+      }
+    }, 100);
   }
   // If enter is pressed call for email submit
   function submitOnEnter(event) {
-    if (event.keyCode == 13 && IDs.modalID.classList.contains('show')) {
-      submitEmail(event);
+    if (event.keyCode === 13 && IDs.modalID.classList.contains('show')) {
+      event.preventDefault();
+      // submitEmail(event);
+      document.querySelector('.btn-modal').click();
     }
-  }
-  // Clear all invalid input properties
-  function clearInvalidInput() {
-    IDs.nameID.classList.remove("invalid-form");
-    IDs.emailID.classList.remove("invalid-form");
-    IDs.phoneID.classList.remove("invalid-form");
-    IDs.messageID.classList.remove("invalid-form");
-    IDs.name_P_ID.classList.remove("invalid-form-text");
-    IDs.email_P_ID.classList.remove("invalid-form-text");
-    IDs.phone_P_ID.classList.remove("invalid-form-text");
-    IDs.message_P_ID.classList.remove("invalid-form-text");
   }
   // Check if cell input is valid
   function validateName() {
-    let from_name = document.querySelector("#input-name").value;
+    let from_name = document.querySelector('#input-name').value;
     if (regexName.test(from_name) || from_name === 0) {
-      validInput("input-name");
+      validInput('input-name');
       name = true;
     } else {
-      invalidInput("input-name");
+      invalidInput('input-name');
       name = false;
     }
   }
   // Check if cell input is valid
   function validateEmail() {
-    let to_name = document.querySelector("#input-email").value;
+    let to_name = document.querySelector('#input-email').value;
     if (regexEmail.test(to_name) || !to_name.length === 0) {
-      validInput("input-email");
+      validInput('input-email');
       email = true;
     } else {
-      invalidInput("input-email");
+      invalidInput('input-email');
       email = false;
     }
   }
   // Check if cell input is valid
   function validatePhone() {
-    let phone_number = document.querySelector("#input-phone").value;
+    let phone_number = document.querySelector('#input-phone').value;
     if (regexPhone.test(phone_number) || phone_number === 0) {
-      validInput("input-phone");
+      validInput('input-phone');
       phone = true;
     } else {
-      invalidInput("input-phone");
+      invalidInput('input-phone');
       phone = false;
     }
   }
   // Check if cell input is valid
   function validateMessage() {
-    let message_html = document.querySelector("#input-message").value;
+    let message_html = document.querySelector('#input-message').value;
     if (!message_html.length === 0 || message_html.trim()) {
-      validInput("input-message");
+      validInput('input-message');
       message = true;
     } else {
-      invalidInput("input-message");
+      invalidInput('input-message');
       message = false;
     }
   }
@@ -272,7 +257,7 @@ window.onload = function () {
     document.getElementById('success').classList.remove('visibility-hidden');
     clearInvalidInput();
     clearForm();
-    setTimeout(function () {
+    setTimeout(() => {
       // closeModal();
       document.getElementById('modal-body').classList.remove('visibility-hidden');
       document.getElementById('success').classList.add('visibility-hidden');
@@ -281,45 +266,21 @@ window.onload = function () {
   // Show error message
   function showError() {
     document.getElementById('failure').classList.remove('visibility-hidden');
-    setTimeout(function() {
+    setTimeout(() => {
       document.getElementById('failure').classList.add('visibility-hidden');
     }, 4000);
   }
-
+  // Hide navbar and lock scroll when modal opens on mobile
   function hideNavbar() {
-
-
-    var x = window.matchMedia("(max-width: 575px)");
-    var y = window.matchMedia("(max-height: 575px)");
-    
+    const x = window.matchMedia('(max-width: 575px)');
+    const y = window.matchMedia('(max-height: 575px)');
+    document.getElementsByTagName('BODY')[0].classList.add('scroll-lock');
     if (x.matches || y.matches) {
-      // document.getElementById('navbar').classList.add("hide-element");
-      document.getElementById('navbar').classList.add("scrollUp");
-      document.getElementsByTagName('BODY')[0].classList.add('scroll-lock');
+      document.getElementById('navbar').classList.add('scrollUp');
     }
-    // console.log('!!!');
   }
-  
-  // Event Listeners
-
-  // Validate inputs on focus out
-  IDs.nameID.addEventListener("focusout", validateName);
-  IDs.emailID.addEventListener("focusout", validateEmail);
-  IDs.phoneID.addEventListener("focusout", validatePhone);
-  IDs.messageID.addEventListener("focusout", validateMessage);
-  // When modal button is pressed hide navbar on phones
-  document.getElementById('btn-trigger-modal').addEventListener('click', hideNavbar);
-  // When modal closes show navbar
-  document.getElementById('exampleModalCenter').addEventListener('click', closedModal);
-  // Send email on submit
-  document.getElementById('contact-form').addEventListener('submit', submitEmail);
-  // Submit on enter press
-  document.addEventListener("keypress", submitOnEnter(event));
-
-
   // Send email
   function submitEmail(event) {
-
     event.preventDefault();
     // Check if all inputs are valid
     validateName();
@@ -327,7 +288,7 @@ window.onload = function () {
     validatePhone();
     validateMessage();
     // Get all data for email
-    var data = {
+    const data = {
       service_id: 'mail_ru',
       template_id: 'template_Eox7BLxl',
       // user_id: 'user_Wu8lnXf7DyJRu3jNjcBxa',
@@ -337,7 +298,7 @@ window.onload = function () {
         "to_name": IDs.emailID.value,
         "phone_number": IDs.phoneID.value,
         "message_html": IDs.messageID.value
-      }
+      },
     };
 
     // Send email if everything is valid
@@ -346,18 +307,30 @@ window.onload = function () {
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json'
-      }).done(function () {
+      }).done(() => {
         // alert('Your mail is sent!');
         showSuccess();
-        
-      }).fail(function (error) {
+      }).fail(() => {
         // alert('Oops... ' + JSON.stringify(error));
         showError();
         // showSuccess();
       });
-      
     }
   }
-}
 
+  // Event Listeners
 
+  // Validate inputs on focus out
+  IDs.nameID.addEventListener('focusout', validateName);
+  IDs.emailID.addEventListener('focusout', validateEmail);
+  IDs.phoneID.addEventListener('focusout', validatePhone);
+  IDs.messageID.addEventListener('focusout', validateMessage);
+  // When modal button is pressed hide navbar on phones
+  document.getElementById('btn-trigger-modal').addEventListener('click', hideNavbar);
+  // When modal closes show navbar on mobile and clear fields
+  document.getElementById('exampleModalCenter').addEventListener('click', closedModal);
+  // Send email on submit
+  document.getElementById('contact-form').addEventListener('submit', submitEmail);
+  // Submit on enter press
+  document.addEventListener('keyup', submitOnEnter(event));
+};
