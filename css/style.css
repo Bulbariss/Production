@@ -37,10 +37,90 @@ img {
   width: 100%;
 }
 
+/* Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px;
+  /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #181D1F;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #696cff;
+  outline: 0;
+}
+
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600;
+}
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline;
+}
+
+label>.label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal;
+}
+
+/* Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 /* Фон выделения цвет */
 ::selection {
-  background-color: #ddd;
-  color: #fff;
+  background-color: #f1c40f;
+  color: #000;
 }
 
 /* -------- IDs ---------- */
@@ -53,7 +133,7 @@ img {
 }
 
 #text {
-  height: 5rem;
+  height: auto;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -61,7 +141,10 @@ img {
 }
 
 #text h4 {
-  font-weight: 300;
+  font-weight: 200;
+  padding: 1.5rem 0;
+  max-width: 700px;
+  font-size: 1.4rem;
 }
 
 #opening {
@@ -88,6 +171,7 @@ img {
 #two {
   background-image: url(../img/video\ reklama.jpg);
 }
+
 #three {
   background-image: url(../img/blogging.png);
 }
@@ -116,6 +200,132 @@ img {
   background-image: url(../img/korporat\ video.png);
 }
 
+#ten {
+  background-image: url(../img/test4.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll;
+  color: #ffffff;
+  /* display: flex;
+  align-items: center; */
+  /* height: 90vh; */
+  padding: 0 1rem;
+  text-align: center;
+}
+
+#ten .h-text-style {
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+#ten .p-text-style {
+  max-width: 600px;
+  margin: auto;
+  color: #d9d9d9;
+}
+
+#ten img {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  border-radius: 50%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+#faces {
+  margin-top: 5rem;
+}
+
+#faces p {
+  width: fit-content;
+  margin: auto;
+  color: #d9d9d9;
+  font-weight: 200;
+}
+
+#btn-trigger-modal {
+  display: block;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+#crew-panel {
+  padding: 2.5rem 0;
+}
+
+#crew1,
+#crew2,
+#crew3,
+#crew4 {
+  width: fit-content;
+  margin: 2rem 0;
+}
+
+p#sent-successfully {
+  display: inline;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+p#sent-unsuccessfully {
+  display: block;
+  color: #181D1F;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0 1.5625rem 1.5625rem 1.5625rem;
+  color: #dc3545;
+  /* transition: all 0.5s  ease-in-out; */
+  /* transition: visibility 0.3s, opacity 0.5s, height 1s, linear ; */
+  transition: all 2s linear;
+}
+
+#svg-sent {
+  width: 4.2rem;
+  margin: 0 1rem 0 0;
+}
+
+#success {
+  padding: 1.5625rem;
+  color: #44bd32;
+}
+
+#success,
+#failure {
+  transition: visibility 2s, opacity 2s, ease-in-out;
+}
+
+#contact-form p {
+  display: none;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: left;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+#close-modal {
+  font-size: 0;
+}
+
+#form-img {
+  height: 3rem;
+  width: auto;
+  margin-right: 1rem;
+}
+
+#svg-close {
+  height: 1rem;
+  width: auto;
+}
+
+#email-input label {
+  padding-top: 0;
+}
+
 /* -------- IDs ---------- */
 
 /* -------- Classes ---------- */
@@ -128,8 +338,19 @@ img {
   stroke: #fff;
 }
 
+#footer-text {
+  margin: 0.5rem 0 1.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
 .nav-bg-col {
   background-color: #181D1F;
+}
+
+.modal-content {
+  color: #f2f2f2;
 }
 
 .navbar {
@@ -153,6 +374,13 @@ img {
   width: 100vw;
 }
 
+.crew-name {
+  font-size: 1.2rem;
+  font-weight: 400 !important;
+  color: #fff !important;
+  margin-bottom: 0.3rem !important;
+}
+
 .img-page {
   background-repeat: no-repeat;
   background-position: center;
@@ -171,7 +399,6 @@ img {
 
 .text-on-page {
   max-width: 660px;
-  margin-top: 60px;
 }
 
 .h-text-style {
@@ -189,7 +416,7 @@ img {
   font-weight: 700;
 }
 
-.btn { 
+.btn {
   height: 38px;
   padding: 0 30px;
   text-align: center;
@@ -202,42 +429,47 @@ img {
   border-radius: 6px;
   border: 1px solid #bbb;
   cursor: pointer;
- }
+}
 
- .btn-modal {
+.btn-modal {
   width: 100%;
   margin-top: 1rem;
   background-color: #696cff;
   font-weight: 600;
   color: #fff;
- }
+}
 
- .modal-header {
-   padding: 1.5625rem;
- }
+.modal {
+  -webkit-overflow-scrolling: touch;
+}
 
- #close-modal {
-  font-size: 0 ;
- }
+.invalid-form {
+  border-color: #dc3545 !important;
+}
 
- #form-img {
-  height: 3rem;
-  width: auto;
-  margin-right: 1rem;
- }
+.invalid-form-text {
+  display: block !important;
+}
 
- #svg-close {
-  height: 1rem;
-  width: auto;
- }
+.visibility-hidden {
+  visibility: hidden !important;
+  opacity: 0;
+  height: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 
- .modal-body label {
+.scroll-lock {
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 1.5625rem;
+}
+
+.modal-body label {
   padding-top: 8px;
- }
-
- #email-input label {
-   padding-top: 0;
- }
+}
 
 /* -------- Classes ---------- */
 
@@ -456,7 +688,7 @@ body.nav-active .nav__list-item:nth-child(9) {
 
   .contents-on-page {
     padding: 0 6rem;
-  
+
   }
 }
 
@@ -466,7 +698,7 @@ body.nav-active .nav__list-item:nth-child(9) {
     margin-bottom: 1rem;
     font-weight: 400;
   }
-  
+
   .p-text-style {
     font-size: 35px;
     padding-bottom: 2rem;
@@ -488,25 +720,24 @@ body.nav-active .nav__list-item:nth-child(9) {
     /* background-image: linear-gradient(to left, #c71d6f 0%, #d09693 100%); */
     /* border: 5px solid #c90515; */
     /* f09819 */
-
-
     height: 56px;
-  padding: 0 60px;
-  /* color: #555; */
-  text-align: center;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 3.2rem;
-  /* letter-spacing: .1rem; */
-  /* text-transform: uppercase; */
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: transparent;
-  border-radius: 6px;
-  border: 2px solid #bbb;
-  cursor: pointer;
+    padding: 0 60px;
+    /* color: #555; */
+    text-align: center;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 3.2rem;
+    /* letter-spacing: .1rem; */
+    /* text-transform: uppercase; */
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 2px solid #bbb;
+    cursor: pointer;
 
   }
+
   .max-width,
   .container {
     max-width: 66.77vw;
@@ -514,7 +745,7 @@ body.nav-active .nav__list-item:nth-child(9) {
 
   .contents-on-page {
     padding: 0rem;
-  
+
   }
 }
 
@@ -522,18 +753,17 @@ body.nav-active .nav__list-item:nth-child(9) {
   .h-text-style {
     font-size: 35px;
   }
-  
+
   .p-text-style {
     font-size: 25px;
   }
 }
 
-
 @media (max-width: 992px) {
   .h-text-style {
     font-size: 30px;
   }
-  
+
   .p-text-style {
     font-size: 20px;
   }
@@ -543,7 +773,7 @@ body.nav-active .nav__list-item:nth-child(9) {
   .h-text-style {
     font-size: 30px;
   }
-  
+
   .p-text-style {
     font-size: 20px;
   }
@@ -556,11 +786,11 @@ body.nav-active .nav__list-item:nth-child(9) {
 
 @media (max-width: 576px) {
   .h-text-style {
-    font-size: 30px;
+    font-size: 28px;
   }
-  
+
   .p-text-style {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   /* .modal-content {
@@ -573,30 +803,25 @@ body.nav-active .nav__list-item:nth-child(9) {
     margin: 0;
   } */
 
-  
-}
-/* @media screen and (orientation:landscape)
-and (max-device-width: 800px)
-and (max-device-height: 576px)  {
-  .nav__list-item {
-    display: inline-block;
-    margin: 1rem;
-    overflow: hidden;
+  .p-text-style {
+    font-weight: 300;
   }
-  
-  .nav__content {
-    top: 50%;
-  }
-} */
 
-@media screen and (orientation:landscape)
-and (max-height: 576px) {
+  #text h4 {
+    font-size: 1.3rem;
+    padding: 1.5rem 1rem;
+  }
+
+
+}
+
+@media screen and (orientation:landscape) and (max-height: 576px) {
   .nav__list-item {
     display: inline-block;
     margin: 1rem;
     overflow: hidden;
   }
-  
+
   .nav__content {
     top: 50%;
   }
@@ -608,132 +833,13 @@ and (max-height: 576px) {
 }
 
 /* -------- Media Qs ---------- */
-
-
-/* Forms
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="text"],
-input[type="tel"],
-input[type="url"],
-input[type="password"],
-textarea,
-select {
-  height: 38px;
-  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
-  background-color: #fff;
-  border: 1px solid #D1D1D1;
-  border-radius: 4px;
-  box-shadow: none;
-  box-sizing: border-box; }
-/* Removes awkward default styles on some inputs for iOS */
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="text"],
-input[type="tel"],
-input[type="url"],
-input[type="password"],
-textarea {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none; }
-textarea {
-  min-height: 65px;
-  padding-top: 6px;
-  padding-bottom: 6px; }
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="search"]:focus,
-input[type="text"]:focus,
-input[type="tel"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
-textarea:focus,
-select:focus {
-  border: 1px solid #696cff;
-  outline: 0; }
-label,
-legend {
-  display: block;
-  margin-bottom: .5rem;
-  font-weight: 600; }
-fieldset {
-  padding: 0;
-  border-width: 0; }
-input[type="checkbox"],
-input[type="radio"] {
-  display: inline; }
-label > .label-body {
-  display: inline-block;
-  margin-left: .5rem;
-  font-weight: normal; }
-
-#contact-form p {
-    display: none;
-    width: 100%;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 80%;
-    color: #dc3545;
+/* Animating SVGs */
+#test11 {
+  background-size: 500px 500px;
 }
 
-.modal {
-  /* transition: all 0.5s  ease-in-out; */
-  transition: all 2s ease-in-out;
-}
-
-.invalid-form {
-  border-color: #dc3545 !important;
-}
-
-.invalid-form-text {
-  display: block !important;
-}
-
-p#sent-successfully {
-  display: inline;
-  font-size: 1.4rem;
-  margin: 0;
-}
-
- p#sent-unsuccessfully {
-  display: block;
-  color: #181D1F;
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin: 0;
-  padding: 0 1.5625rem 1.5625rem 1.5625rem;
-  color: #dc3545;
-  /* transition: all 0.5s  ease-in-out; */
-  /* transition: visibility 0.3s, opacity 0.5s, height 1s, linear ; */
-  transition: all 2s linear;
-}
-
-#svg-sent {
-  width: 4.2rem;
-  margin: 0 1rem 0 0;
-}
-
-#success {
-  padding:1.5625rem;
-  color: #44bd32;
-}
-#success,
-#failure {
-  transition: visibility 2s, opacity 2s, ease-in-out ;
-}
-
-.visibility-hidden {
-  visibility: hidden !important;
-  opacity: 0;
-  height: 0;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.scroll-lock {
-  overflow: hidden;
+#h2,
+#h3,
+#h4 {
+  visibility: hidden;
 }

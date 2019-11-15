@@ -1,29 +1,26 @@
+'use strict';
 // Menu
 (function () {
   const body = document.getElementsByTagName('BODY')[0];
   const menu = document.querySelector('.menu-icon');
   const menuItems = document.querySelectorAll('.nav__list-item');
-  const toggleClass = function toggleClass() {
+
+  function toggleClass() {
     if (body.classList.contains('nav-active')) body.classList.remove('nav-active');
     else body.classList.add('nav-active');
   };
-  const applyListeners = function applyListeners() {
-    menu.addEventListener('click', () => {
+  menu.addEventListener('click', () => {
+    toggleClass();
+  });
+  for (let i = 0; i < menuItems.length; i++) {
+    menuItems[i].addEventListener('click', () => {
       toggleClass();
     });
-    for (let i = 0; i < menuItems.length; i + 1) {
-      menuItems[i].addEventListener('click', () => {
-        toggleClass();
-      });
-    }
-  };
-
-  applyListeners();
+  }
 }());
 
 // ScrollTop Menu
 $(document).ready(function () {
-  'use strict';
   const x = window.matchMedia("(max-width: 575px)");
   const y = window.matchMedia("(max-height: 575px)");
   let c, currentScrollTop = 0,
@@ -334,3 +331,40 @@ window.onload = function () {
   // Submit on enter press
   document.addEventListener('keyup', submitOnEnter(event));
 };
+
+
+
+
+// lottie.loadAnimation({
+//   container: document.getElementById('bm'), // the dom element that will contain the animation
+//   renderer: 'svg',
+//   loop: true,
+//   autoplay: true,
+//   path: 'data.json' // the path to the animation json
+// });
+
+var tl = new TimelineMax({
+    paused: false,
+    repeat: -1,
+    yoyo: false,
+    // repeatDelay: 0,
+    // delay: 0
+  }),
+  h1 = document.getElementById("h1");
+
+tl.to(h1, 10, {
+    morphSVG: "#h2",
+    ease: Power0.easeNone
+  }, "-=0")
+  .to(h1, 10, {
+    morphSVG: "#h3",
+    ease: Power0.easeNone
+  }, "-=0")
+  .to(h1, 10, {
+    morphSVG: "#h4",
+    ease: Power0.easeNone
+  }, "+=0")
+  .to(h1, 13, {
+    morphSVG: h1,
+    ease: Power0.easeNone
+  }, "+=0");
