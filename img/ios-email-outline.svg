@@ -1,3 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="384" height="256" style="" fill="#696cff" xml:space="preserve"><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none"/>
-
-<g class="currentLayer" style=""><title>Layer 1</title><path d="M0,0 v256 h384 V0 H0 zM192,139.89999999999998 L29.200000000000003,16 h325.6 L192,139.89999999999998 zM16,240 V26.099999999999994 l115.1,87.6 L63,191 l2,2 l78.9,-69.6 L192,160 l48.1,-36.6 L319,193 l2,-2 l-68.1,-77.4 L368,26.099999999999994 V240 H16 z" id="svg_1" class=""/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewbox="0 0 384 256" width="384"
+    height="256" style="" fill="#696cff" xml:space="preserve">
+    <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none" />
+    <path
+        d="M0,0 v256 h384 V0 H0 zM192,139.89999999999998 L29.200000000000003,16 h325.6 L192,139.89999999999998 zM16,240 V26.099999999999994 l115.1,87.6 L63,191 l2,2 l78.9,-69.6 L192,160 l48.1,-36.6 L319,193 l2,-2 l-68.1,-77.4 L368,26.099999999999994 V240 H16 z"
+        id="svg_1" class="" /></svg>
