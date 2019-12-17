@@ -1,6 +1,61 @@
-'use strict';
-
 document.addEventListener("DOMContentLoaded", function () {
+  'use strict';
+
+  function initCookies() {
+    let cookieConsent = getCookie('consent');
+    if (cookieConsent !== 'true') {
+      showCookieBanner();
+    }
+  }
+
+  function allowCookies() {
+    setCookie('consent', true, 365);
+    hideCookieBanner();
+  }
+
+  document.getElementById('cookie-popup-btn').addEventListener('click', allowCookies);
+
+  function showCookieBanner() {
+    document.getElementById('cookie-popup').classList.add('d-block');
+  }
+
+  function hideCookieBanner() {
+    document.getElementById('cookie-popup').classList.remove('d-block');
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  initCookies();
+
+  setTimeout(() => {
+    document.getElementsByTagName('BODY')[0].classList.remove('scrollLock');
+    document.querySelector('#start-overlay').style.opacity = '0';
+    setTimeout(() => {
+      document.querySelector('#start-overlay').style.display = 'none';
+    }, 1000);
+  }, 3500);
+
   // Menu
   (function () {
     const body = document.getElementsByTagName('BODY')[0];
@@ -114,10 +169,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const hash = this.hash;
 
       $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 1000, $.bez([0.165, 0.84, 0.44, 1]), function () {
-        window.location.hash = hash;
-      });
+          scrollTop: $(hash).offset().top
+        }, 900, $.bez([0.165, 0.84, 0.44, 1]),
+        function () {
+          window.location.hash = hash;
+        });
     }
   }
   $('a.nav-link, a.smooth-scr').on('click', smoothScroll);
@@ -128,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       $('html, body').animate({
         scrollTop: $(hash).offset().top
-      }, 1000, $.bez([0.165, 0.84, 0.44, 1]), function () {
+      }, 1200, $.bez([0.165, 0.84, 0.44, 1]), function () {
         window.location.hash = hash;
       });
     }
@@ -419,129 +475,408 @@ document.addEventListener("DOMContentLoaded", function () {
     line_3_6: "M14.47,0C13.64,16.27,13,32.55,11.92,48.81,10.34,72.4,8,95.94,6.75,119.54,5.63,140.16,5,160.83,5,181.48A1159.46,1159.46,0,0,0,14.31,325c6.37,50.89,12.25,101.81,15.13,153.08A1149.12,1149.12,0,0,0,52.93,654.2c7,33,9.5,66.59,11.54,100.19,1,17,1.6,34,2,50.94,1.53,60-5.93,119.07-20.15,177.25a614.07,614.07,0,0,0-17.66,141.49c-.34,44.66.2,89.33-.06,134-.15,24-1.5,48-1.72,72-.64,68,3.3,135.86,9.41,203.6,3.08,34.2,4.81,68.45,2.51,102.82-1.93,28.78-8.49,56.6-16.39,84.18-11.45,40-16.25,80.81-18,122.25-1.32,30.69-.82,61.31.6,91.92,1.71,36.71,8.13,72.74,16.73,108.46,3.81,15.82,7.18,31.88,9,48,2.5,22.06-.82,43.86-6.54,65.29-7.48,28-13.52,56.35-16.63,85.23-1.06,9.94-2.2,19.9-2.46,29.88-1.11,43-2,85.95,3.58,128.76,3.35,25.9,9.05,51.14,19.49,75.19,13.15,30.3,24.66,61.12,31.23,93.67,11.14,55.16,12.82,110.26,2.63,165.81-10.33,56.38-18.51,113.09-21.52,170.41-1.42,26.93-4,53.95-3,80.83,1.29,36.91,4.38,73.83,8.56,110.54C52.2,3150.81,61,3204.46,64.18,3258.7c3,50.59,4.32,101.29.93,151.88-2.88,42.85-7.73,85.57-11.58,128.36-2.28,25.22-4.68,50.43-6.39,75.69-3.12,46.2-5.42,92.46-8.73,138.64-2.41,33.55-6,67-8.83,100.54-1.11,13-1.94,25.93-2.42,38.91C23.47,3993.33,24,4094,24.66,4194.64c.32,51.08-3.52,101.83-9.11,152.54S7.49,4448.71,10,4499.82a719.29,719.29,0,0,0,22.31,144.87c11.58,45,17.56,90.84,21.09,137.11,4.82,63.19,7.75,126.47,5,189.77-1.69,38.88-6.81,77.61-10.32,116.41-1.72,18.91-4.31,37.8-4.71,56.74-.61,28.63.82,57.31.54,86-.48,49.3.1,98.71-2.94,147.88-3.38,54.8-10.45,109.38-15.64,164.08-3.21,33.81-5.69,67.7-8.9,101.52C12.28,5688,11.55,5732,13.13,5776c1.12,30.93,3.52,61.87,6.81,92.66,5,47,11.22,93.9,17.06,140.83,4.11,33.05,8.73,66,12.56,99.12,2.25,19.51,3.81,39.12,4.94,58.74,2.17,37.58,3.83,75.2,5.66,112.8C62.68,6332.31,55,6383.05,39.9,6433c-7.52,24.83-14.4,50-19.52,75.39a393.24,393.24,0,0,0-7.27,62.43c-1.55,41.27-2.36,82.62-1.83,123.91.55,43,3.6,85.88,4.54,128.85.89,41,.45,82,.64,123,.16,33.67-.68,67.38.89,101s4.81,67.12,8.71,100.51c5.41,46.31,12.82,92.38,18,138.71a697.49,697.49,0,0,1,4.32,79.8c-.22,59.64-1.85,119.29-2.88,178.93q-.3,17-.37,34c-.15,46.42-5.77,92.37-11.06,138.39-4.48,39-8.37,78.15-11.35,117.32-4.06,53.24-2.37,106.6-1.42,159.91.77,43,3.26,85.93,3.11,128.89-.13,38.29-2.93,76.57-4.36,114.86-2.56,68.12,3.67,135.07,26,200,7.45,21.71,13.36,44,19.49,66.13,10.13,36.61,10.35,73.69,4.45,111-4.79,30.27-10.26,60.46-13.9,90.87-4.45,37.06-7.38,74.38-4.83,111.72,1.61,23.56,5.86,46.92,8.39,70.43,2.64,24.49,5.5,49,6.75,73.59,2.29,45.25,3.85,90.55,5,135.85A724,724,0,0,1,63.94,9219c-8.2,57.79-22.4,114.37-34,171.46a832.29,832.29,0,0,0-15.2,116.81c-1.29,21.62-2.75,43.24-3.19,64.88-.74,37,.39,74,4.63,110.78,4.94,43,11.21,85.86,16.14,128.87,3,25.8,4.48,51.77,6.61,77.66,2.48,30.21,5,60.42,7.31,90.64.51,6.61.21,13.27.28,19.91h-4c-1-15.62-1.75-31.25-2.95-46.85-2.3-29.89-4.48-59.8-7.35-89.64-3.32-34.47-6.43-69-11.24-103.28C10.81,9688.12,5.73,9615.79,8.57,9543a1065.62,1065.62,0,0,1,28.24-205.57c10.26-43.09,18.89-86.55,24.46-130.55a666.73,666.73,0,0,0,5.5-98.73c-.78-34.64-2.6-69.25-4-103.87-.55-13.31-1.71-26.62-1.93-39.93-.53-30.76-4.41-61.17-9.68-91.37-8.22-47-7.58-94.12-4-141.49,3.07-41.32,11.19-81.84,17.55-122.64a255.36,255.36,0,0,0-7.72-113.72c-7-23.62-14.09-47.25-21.51-70.77-12.34-39.07-18.07-79.19-19.28-120-1.49-50,1-99.92,3.09-149.88,1.59-37.9.54-75.95-.34-113.92-1.44-62-4.76-123.91-1.25-185.89,1.77-31.26,3.79-62.51,6.53-93.69,2.13-24.21,5.5-48.32,8.41-72.46a1062.34,1062.34,0,0,0,7.71-110.61c1-66.65,2.77-133.29,3.43-199.93.52-52.75-5.47-105-12.55-157.27-6-44.2-10.85-88.58-15.18-133-4.6-47.15-3.8-94.52-3.62-141.85.19-50,.35-100-.53-150C11,6749.89,8,6704,7.43,6658c-.41-32.28,1.22-64.61,2.6-96.89a419.2,419.2,0,0,1,13.86-91.71c5.47-20.26,11.28-40.43,16.83-60.67,9.56-34.91,14.94-70.47,13.85-106.68-1.48-49.29-3.61-98.55-6-147.8-2.79-58.66-12.77-116.51-19.94-174.68-5.54-45-10.13-90-14.88-135.05-4.28-40.47-6.46-81.11-5-121.76,1.37-38.94,3.8-77.86,7-116.7,3.5-43.15,8.43-86.18,12.56-129.28,3.18-33.16,7.56-66.28,8.77-99.52q2.79-76.38,1.74-152.9c-.74-51.72-.39-103.2,6.55-154.6,9-66.54,10.94-133.45,7.62-200.51-.9-18.31-1.65-36.62-2.45-54.93-2.76-63.09-11.29-125.32-27-186.57A486.2,486.2,0,0,1,8,4523.13c-1.28-37.28-2-74.62-1.36-111.9.46-24.93,3.42-49.84,6-74.68,4.94-46.76,8-93.56,7.72-140.63q-.62-101.49.24-203,.62-63,3.85-125.89c1.86-35.58,5.67-71.06,8.5-106.59,1.11-13.95,1.94-27.92,2.86-41.88,3.24-48.86,6-97.76,9.84-146.58,4-51.14,10.25-102.12,13.39-153.31,2.3-37.54,1.47-75.29,1.48-113,0-51.4-5.19-102.44-11.94-153.34-7-52.84-14.06-105.71-15.57-159.05-.69-23.94.08-48,1.49-71.92,1.59-26.92,3.93-53.84,7.27-80.6,4.44-35.68,10-71.22,15.38-106.79,3.66-24.39,7.17-48.75,6.91-73.53-.61-57-9.89-112.27-33.24-164.42C11.43,2452.69,4,2407.21,1.71,2360.21a946.12,946.12,0,0,1,.53-96.9A538.49,538.49,0,0,1,19,2157.87a209.74,209.74,0,0,0,.5-104.78c-8.13-32.69-14.23-65.8-16.61-99.42-2.72-38.57-4.17-77.21-1.22-115.86,1.65-21.57,2.43-43.31,5.81-64.63,3.85-24.29,9.63-48.32,15.53-72.22a390.62,390.62,0,0,0,11.69-87c.65-35.4-2.73-70.56-5.27-105.78-1.75-24.25-3.88-48.51-4.59-72.8q-1.83-63-2-125.94c-.1-49.65,1.63-99.31.88-148.94-1-66.66,4.62-132.28,20.65-197.22,13.31-53.9,18.23-109,16.43-164.63-1.42-44-3.48-87.9-10.8-131.39-4.86-28.9-10.78-57.65-14.68-86.67-4.08-30.35-6.94-60.9-9.18-91.44C22.52,440.69,19,392.23,13,343.93c-4.14-33-6.94-66.26-8.76-99.49-1.72-31.24-2.29-62.62-1.7-93.91.58-29.94,3.15-59.85,5.14-89.76C9,40.5,10.85,20.26,12.47,0Z",
     line_3_7: "M18.57,0c-1.45,19.93-3,39.85-4.31,59.79-1.86,28.25-4.69,56.5-5,84.77-.44,37.62.18,75.32,2.12,112.9C13,289.36,17.3,321.11,20.19,353c2.49,27.53,5.11,55.06,6.87,82.64,3.06,47.87,4.66,95.86,8.51,143.66,2.62,32.5,8.23,64.75,12.11,97.15,2.06,17.19,3.71,34.46,4.79,51.74a1084,1084,0,0,1-3.12,177.72c-3.8,37.44-8.34,74.82-11.6,112.32-4,45.49-5.82,91.09-3.77,136.8,1.46,32.29,1.6,64.64,3.1,96.92,2,42.27,5,84.47,7,126.73,2.29,48.27,3.44,96.55,1.61,144.91-1.53,40.38-5.26,80.46-12.86,120.1-5.64,29.43-12.56,58.61-18.57,88a476.8,476.8,0,0,0-9.66,77.24q-1.33,34.44-2.11,68.92c-1.32,59.34,6.17,117.6,21.24,175A276.76,276.76,0,0,1,31,2096c2,20.43-1.38,40.54-6.64,60.31-8.73,32.89-15.95,66.09-18.64,100.06C3,2291.3,2,2326.23,3.88,2361.26c1.54,28.65,3.68,57.23,9.39,85.33,5.44,26.75,12.21,53.23,18.36,79.83,6.91,29.93,10,60.43,13.35,90.89,5.27,48,2.09,95.83-1.47,143.7-3.8,51.2-6.73,102.43-4.29,153.8,1.37,29,6.19,57.55,11.43,86.09,8.6,46.84,16,93.9,24.34,140.79a1320,1320,0,0,1,17.19,134.74c4.22,57.73,1.28,114.62-21.88,168.89-3.79,8.87-6.58,18.17-10.19,27.13-15.47,38.49-22.69,78.79-24.7,119.9q-2.67,54.87-2,109.89c.43,36,3.76,71.89,4.24,107.85.71,52,.18,104-.2,155.94-.13,17.32-1.37,34.62-2.19,51.93q-3.86,80.37-7.74,160.74c-.9,19-1,38-2.42,56.91-2.56,33.21-5.29,66.42-9,99.5a1111.37,1111.37,0,0,0-5.8,181.58c2.93,58.19,14.13,114.89,27.21,171.43,15.92,68.82,28.4,138.33,38.94,208.17,5.66,37.44,5.23,75,1.33,112.63a659.91,659.91,0,0,1-16.77,94.35c-7.14,28.2-10.13,57-12.1,86q-4.32,63.3-9.43,126.55c-2.62,32.87-5.81,65.7-8.58,98.55q-4.84,57.26-9.35,114.53c-1.06,13.61-1.72,27.27-2.19,40.92-1.4,40.29-3.26,80.59-3.73,120.9a871.62,871.62,0,0,0,12,155.22c8.24,48.93,14.72,98.16,21.4,147.33,4.08,30,7.3,60.17,10.51,90.31,3.66,34.24,2.37,68.56.55,102.85-1.21,22.95-3.72,45.83-4.66,68.79C53.28,6306.89,46.48,6358,38,6409c-9.34,56.24-15.59,112.76-17.62,169.83-2.3,64.69-1.4,129.33,1.17,193.91,1.52,38.21,7,76.25,10.34,114.4,2.65,29.85,5.69,59.69,7,89.61,1.51,33.61,2.21,67.32,1.63,100.95-.81,46.63-3.15,93.24-4.83,139.85-.19,5.33-.42,10.66-.52,16q-1.39,71-2.74,141.95c-.45,22.65-1.29,45.3-1.32,68a1060.21,1060.21,0,0,0,7.19,120.66c5.73,50.66,3.73,101.07-4.09,151.4-6.59,42.47-11.43,85.13-13.8,128.1-3.45,62.63-3.32,125.26-1.09,187.88,1.5,42.28,4.52,84.5,6.8,126.75.36,6.65.45,13.32.62,20,.85,33,1.12,66,2.64,98.94,2.09,45.29,7.3,90.3,14.53,135.07,6.69,41.43,13.49,82.85,19.61,124.37,3.22,21.78,3.27,43.8,2.33,65.84-1.29,30.62-3,61.28-2.78,91.9.44,59.71,3.87,119.25,16.18,177.9,9.2,43.81,9,88,6.67,132.4-.37,7-.8,14-.73,21,.92,87.78-10.27,174.06-31,259.3-10.69,44-20.57,88.25-26.13,133.28q-4.34,35.17-6.73,70.61c-3.28,47.57-4.71,95.22-2.25,142.87,1.34,25.93,4.39,51.77,6.19,77.69,2.15,31.23,4.73,62.47,5.46,93.75,1.44,61.31,1.74,122.63,2.45,183.95,0,4.31-.44,8.63-.67,12.94h-4c.15-3,.47-6,.43-9-.95-66.31-1.34-132.65-3.19-199-1-34.26-4-68.5-7.07-102.66a1138.61,1138.61,0,0,1-3.11-168.75c1.24-21.28,2.81-42.55,4.15-63.82,2.65-42,10.72-83.2,19.52-124.26,9.35-43.64,19-87.21,27.7-131A619.61,619.61,0,0,0,78.17,9101.4c1-29.31,1.35-58.64,2.11-87.95.43-16.33,1.06-32.64,1.65-49,1.27-34.56-3.87-68.49-10.45-102.21-7.55-38.71-11.09-77.78-13-117.11a1161.71,1161.71,0,0,1,1.15-132.87c2.7-40.43-1.37-80.42-8-120.39-8.56-51.24-15.75-102.72-22.64-154.22-2.73-20.43-3.54-41.16-4.39-61.79-1.12-27-1.14-54-2.13-81-1.73-47.28-3.75-94.54-5.81-141.81-2.74-62.95-3.35-125.89-1.07-188.9,2-55.37,8.19-110.23,15.93-165,6.23-44.08,6.38-88.31,1.51-132.6A1245.49,1245.49,0,0,1,27.49,7370c1.43-29.62,1.42-59.31,2.42-88.95,1.77-52.62,4.41-105.21,5.54-157.84.89-41.31.34-82.65-.16-124-.26-21.31-1.15-42.66-2.93-63.89-2.41-28.87-6.06-57.63-8.94-86.46-1.83-18.23-3.79-36.47-4.72-54.75-3.89-76.27-3.73-152.6-1.83-228.91,1.51-61.08,10.15-121.45,20.18-181.62a1120.43,1120.43,0,0,0,13.27-123.13c2-35.6,4.45-71.16,6.17-106.76,2.25-46.81-2.78-93.19-9.35-139.42-8.19-57.71-15.9-115.51-25.29-173-10.65-65.21-11-130.74-9-196.4,1.31-43,3.06-85.92,5.83-128.8,2.87-44.2,7.23-88.3,10.91-132.45,2.19-26.22,4.55-52.44,6.46-78.68,3.56-48.84,6.18-97.76,10.56-146.53,1.9-21.13,6.18-42.21,11.17-62.88,11.72-48.5,18.39-97.53,18-147.42-.18-27.4-4.36-54.43-8.68-81.41C54.75,4789,38.68,4712.06,21.35,4635.37c-7.43-32.86-11.38-66.31-13.3-99.94-1.37-23.94-2.84-47.91-3-71.88-.26-47,3.43-93.82,8.29-140.6,4-38.74,6.77-77.64,9-116.54,3-51.55,4.93-103.17,7.46-154.75,4.24-86.25,5.87-172.53,2.5-258.85-1.37-35.29-3.87-70.55-4.57-105.85-.58-29-.11-58,1.52-86.91a707.68,707.68,0,0,1,8-70.46c4.49-28.44,15.26-55.16,25.31-82,9.24-24.67,18-49.46,21.9-75.7a389.68,389.68,0,0,0,3-86.77c-2.61-35.52-6.06-71.06-11.16-106.3-6.72-46.46-15.36-92.65-23.23-138.95-5.24-30.86-10.8-61.66-15.75-92.57a258.87,258.87,0,0,1-2.75-31.85,1220.58,1220.58,0,0,1,2.8-128.86c2.91-40.85,5.23-81.86,5.16-122.8-.09-57.17-8.83-113.46-23.09-168.89C6,2442.67.13,2389.49.1,2335.6c0-32.34-.67-64.74,4.13-96.79,4-27,8.55-54,14.89-80.48a226.08,226.08,0,0,0,.43-104.84C12.82,2024,8,1994,3.12,1964.14c-2-12.44-2.54-25.22-2.71-37.85C0,1896-.23,1865.66.33,1835.37c.35-18.62,2.11-37.23,3.56-55.82,2.38-30.29,8.37-60,15.09-89.57,9.85-43.28,17.53-86.89,20.55-131.17a1286.8,1286.8,0,0,0,1.59-141.9c-1.18-28-3.26-55.88-4.49-83.83-2.91-66.58-6-133.16-8.15-199.76C26.57,1073.9,31.74,1014.84,39,955.88c8.89-72.23,12.38-144.74,8.82-217.51-1.86-38-7.76-75.52-12.42-113.21-3.14-25.44-5.59-51-7.1-76.6-2.62-44.57-3.73-89.23-6.53-133.79-1.89-30.23-5.67-60.34-8.46-90.52-1.81-19.57-3.86-39.13-4.92-58.75-1.49-27.6-3.2-55.27-2.91-82.89C5.87,146.32,7.86,110,9.64,73.78,10.85,49.17,12.9,24.59,14.57,0Z",
     // line_3_8: ,
-  }
+  };
 
-  // function sleep(ms) {
-  //   return new Promise(resolve => setTimeout(resolve, ms));
-  // }
+  // Btn path 1
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    });
+
+    tl.to("#svg-btn-01-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_01,
+      }, "-=0")
+      .to("#svg-btn-01-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_01,
+      }, "-=0")
+      .to("#svg-btn-01-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_01,
+      }, "+=0")
+      .to("#svg-btn-01-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_01,
+      }, "  +=0")
+      .to("#svg-btn-01-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_01,
+      }, "+=0")
+      .to("#svg-btn-01-" + i, 3.5, {
+        morphSVG: "#svg-btn-01-" + i,
+      }, "+=0");
+  };
+  // // Btn path 2
+  // for (let i = 1; i < 10; i++) {
+  //   let tl = new TimelineMax({
+  //     paused: false,
+  //     repeat: -1,
+  //     yoyo: false,
+  //     ease: "none",
+  //   });
+
+  //   tl.to("#svg-btn-02-" + i, 3.5, {
+  //       morphSVG: svgPaths.btn_2_02,
+  //     }, "-=0")
+  //     .to("#svg-btn-02-" + i, 3.5, {
+  //       morphSVG: svgPaths.btn_3_02,
+  //     }, "-=0")
+  //     .to("#svg-btn-02-" + i, 3.5, {
+  //       morphSVG: svgPaths.btn_4_02,
+  //     }, "+=0")
+  //     .to("#svg-btn-02-" + i, 3.5, {
+  //       morphSVG: svgPaths.btn_5_02,
+  //     }, "+=0")
+  //     .to("#svg-btn-02-" + i, 3.5, {
+  //       morphSVG: svgPaths.btn_6_02,
+  //     }, "+=0")
+  //     .to("#svg-btn-02-" + i, 3.5, {
+  //       morphSVG: "#svg-btn-02-" + i,
+  //     }, "+=0");
+  // };
+  // Btn path 3
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    });
+
+    tl.to("#svg-btn-03-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_03,
+      }, "-=0")
+      .to("#svg-btn-03-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_03,
+      }, "-=0")
+      .to("#svg-btn-03-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_03,
+      }, "+=0")
+      .to("#svg-btn-03-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_03,
+      }, "+=0")
+      .to("#svg-btn-03-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_03,
+      }, "+=0")
+      .to("#svg-btn-03-" + i, 3.5, {
+        morphSVG: "#svg-btn-03-" + i,
+      }, "+=0");
+  };
+  // Btn path 4
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    });
+
+    tl.to("#svg-btn-04-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_04,
+      }, "-=0")
+      .to("#svg-btn-04-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_04,
+      }, "-=0")
+      .to("#svg-btn-04-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_04,
+      }, "+=0")
+      .to("#svg-btn-04-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_04,
+      }, "+=0")
+      .to("#svg-btn-04-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_04,
+      }, "+=0")
+      .to("#svg-btn-04-" + i, 3.5, {
+        morphSVG: "#svg-btn-04-" + i,
+      }, "+=0");
+  };
+
+  // Btn path 5
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    });
+
+    tl.to("#svg-btn-05-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_05,
+      }, "-=0")
+      .to("#svg-btn-05-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_05,
+      }, "-=0")
+      .to("#svg-btn-05-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_05,
+      }, "+=0")
+      .to("#svg-btn-05-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_05,
+      }, "+=0")
+      .to("#svg-btn-05-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_05,
+      }, "+=0")
+      .to("#svg-btn-05-" + i, 3.5, {
+        morphSVG: "#svg-btn-05-" + i,
+      }, "+=0");
+  };
+  // Btn path 6
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    });
+
+    tl.to("#svg-btn-06-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_06,
+      }, "-=0")
+      .to("#svg-btn-06-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_06,
+      }, "-=0")
+      .to("#svg-btn-06-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_06,
+      }, "+=0")
+      .to("#svg-btn-06-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_06,
+      }, "+=0")
+      .to("#svg-btn-06-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_06,
+      }, "+=0")
+      .to("#svg-btn-06-" + i, 3.5, {
+        morphSVG: "#svg-btn-06-" + i,
+      }, "+=0");
+  };
+  // Btn path 7
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    });
+
+    tl.to("#svg-btn-07-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_07,
+      }, "-=0")
+      .to("#svg-btn-07-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_07,
+      }, "-=0")
+      .to("#svg-btn-07-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_07,
+      }, "+=0")
+      .to("#svg-btn-07-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_07,
+      }, "+=0")
+      .to("#svg-btn-07-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_07,
+      }, "+=0")
+      .to("#svg-btn-07-" + i, 3.5, {
+        morphSVG: "#svg-btn-07-" + i,
+      }, "+=0");
+  };
+  // Btn path 8
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    });
+
+    tl.to("#svg-btn-08-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_08,
+      }, "-=0")
+      .to("#svg-btn-08-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_08,
+      }, "-=0")
+      .to("#svg-btn-08-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_08,
+      }, "+=0")
+      .to("#svg-btn-08-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_08,
+      }, "+=0")
+      .to("#svg-btn-08-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_08,
+      }, "+=0")
+      .to("#svg-btn-08-" + i, 3.5, {
+        morphSVG: "#svg-btn-08-" + i,
+      }, "+=0");
+  };
+  // Btn path 9
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    });
+
+    tl.to("#svg-btn-09-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_09,
+      }, "-=0")
+      .to("#svg-btn-09-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_09,
+      }, "-=0")
+      .to("#svg-btn-09-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_09,
+      }, "+=0")
+      .to("#svg-btn-09-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_09,
+      }, "+=0")
+      .to("#svg-btn-09-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_09,
+      }, "+=0")
+      .to("#svg-btn-09-" + i, 3.5, {
+        morphSVG: "#svg-btn-09-" + i,
+      }, "+=0");
+  };
+  // Btn path 10
+  for (let i = 1; i < 10; i++) {
+    let tl = new TimelineMax({
+      paused: false,
+      repeat: -1,
+      yoyo: false,
+      ease: "none",
+    })
+
+    tl.to("#svg-btn-10-" + i, 3.5, {
+        morphSVG: svgPaths.btn_2_10,
+      }, "-=0")
+      .to("#svg-btn-10-" + i, 3.5, {
+        morphSVG: svgPaths.btn_3_10,
+      }, "-=0")
+      .to("#svg-btn-10-" + i, 3.5, {
+        morphSVG: svgPaths.btn_4_10,
+      }, "+=0")
+      .to("#svg-btn-10-" + i, 3.5, {
+        morphSVG: svgPaths.btn_5_10,
+      }, "+=0")
+      .to("#svg-btn-10-" + i, 3.5, {
+        morphSVG: svgPaths.btn_6_10,
+      }, "+=0")
+      .to("#svg-btn-10-" + i, 3.5, {
+        morphSVG: "#svg-btn-10-" + i,
+      }, "+=0");
+  };
+
+
+
+
 
   // // Lines path 1
   // let tl_1 = new TimelineMax({
   //   paused: false,
   //   repeat: -1,
   //   yoyo: false,
-  //   ease: Power0.easeNone,
+  //   ease: "none",
   // });
   // tl_1.to('#svg-line-1', 5, {
-  //     morphSVG: {
-  //       shape: linesPaths.line_1_2,
-  //       type: "rotational",
-  //       origin: "19% 32%, 99% 35%",
-  //     }
-  //   }, "-=0")
-  //   .to('#svg-line-1', 5, {
-  //     morphSVG: {
-  //       shape: linesPaths.line_1_3,
-  //       type: "rotational",
-  //       origin: "19% 32%, 99% 35%",
-  //     }
-  //   }, "-=0")
-  //   .to('#svg-line-1', 5, {
-  //     morphSVG: {
-  //       shape: linesPaths.line_1_4,
-  //       type: "rotational",
-  //       origin: "19% 32%, 99% 35%",
-  //     }
-  //   }, "+=0")
-  //   .to('#svg-line-1', 5, {
-  //     morphSVG: {
-  //       shape: linesPaths.line_1_5,
-  //       type: "rotational",
-  //       origin: "19% 32%, 99% 35%",
-  //     }
-  //   }, "+=0")
-  //   .to('#svg-line-1', 5, {
-  //     morphSVG: {
-  //       shape: linesPaths.line_1_6,
-  //       type: "rotational",
-  //       origin: "19% 32%, 99% 35%",
-  //     }
-  //   }, "+=0")
-  //   .to('#svg-line-1', 5, {
-  //     morphSVG: {
-  //       shape: linesPaths.line_1_7,
-  //       type: "rotational",
-  //       origin: "19% 32%, 99% 35%",
-  //     }
-  //   }, "+=0");
-  // // .to('#svg-line-1', 5, {
-  // //   morphSVG: {
-  // //     shape: linesPaths.line_1_8,
-  // //     type: "rotational",
-  // //     // origin: "19% 32%, 99% 35%",
-  // //   }
-  // // }, "+=0")
+  //       morphSVG: {
+  //         shape: linesPaths.line_1_2,
+  //         type: "rotational",
 
-  // // Lines path 2
-  // let tl_2 = new TimelineMax({
-  //   paused: false,
-  //   repeat: -1,
-  //   yoyo: false,
-  //   ease: Power0.easeNone,
-  // });
-  // tl_2.to('#svg-line-2', 5, {
-  //     morphSVG: linesPaths.line_2_2,
-  //   }, "-=0")
-  //   .to('#svg-line-2', 5, {
-  //     morphSVG: linesPaths.line_2_3,
-  //   }, "-=0")
-  //   .to('#svg-line-2', 5, {
-  //     morphSVG: linesPaths.line_2_4,
-  //   }, "+=0")
-  //   .to('#svg-line-2', 5, {
-  //     morphSVG: linesPaths.line_2_5,
-  //   }, "+=0")
-  //   .to('#svg-line-2', 5, {
-  //     morphSVG: linesPaths.line_2_6,
-  //   }, "+=0")
-  //   .to('#svg-line-2', 5, {
-  //     morphSVG: linesPaths.line_2_7,
-  //   }, "+=0")
-  // // .to('#svg-line-2', 5, {
-  // //   morphSVG: linesPaths.line_2_8,
-  // // }, "+=0")
-  // // Lines path 3
-  // let tl_3 = new TimelineMax({
-  //   paused: false,
-  //   repeat: -1,
-  //   yoyo: false,
-  //   ease: Power0.easeNone,
-  // });
-  // tl_3.to('#svg-line-3', 5, {
-  //     morphSVG: linesPaths.line_3_2,
-  //   }, "-=0")
-  //   .to('#svg-line-3', 5, {
-  //     morphSVG: linesPaths.line_3_3,
-  //   }, "-=0")
-  //   .to('#svg-line-3', 5, {
-  //     morphSVG: linesPaths.line_3_4,
-  //   }, "+=0")
-  //   .to('#svg-line-3', 5, {
-  //     morphSVG: linesPaths.line_3_5,
-  //   }, "+=0")
-  //   .to('#svg-line-3', 5, {
-  //     morphSVG: linesPaths.line_3_6,
-  //   }, "+=0")
-  //   .to('#svg-line-3', 5, {
-  //     morphSVG: linesPaths.line_3_7,
-  //   }, "+=0")
-  // .to('#svg-line-3', 5, {
-  //   morphSVG: linesPaths.line_3_8,
-  // }, "+=0")
-  // .to('#svg-line-3', 5, {
-  //   // morphSVG: linesPaths.line_1_1,
-  //   morphSVG: '#svg-line-3',
-  // }, "+=0");
+  //       },
+  //       "-=0")
+  //     .to('#svg-line-1', 5, {
+  //         morphSVG: {
+  //           shape: linesPaths.line_1_3,
+  //           type: "rotational",
+
+  //         },
+  //         "-=0")
+  //       .to('#svg-line-1', 5, {
+  //           morphSVG: {
+  //             shape: linesPaths.line_1_4,
+  //             type: "rotational",
+
+  //           },
+  //           "+=0")
+  //         .to('#svg-line-1', 5, {
+  //             morphSVG: {
+  //               shape: linesPaths.line_1_5,
+  //               type: "rotational",
+
+  //             },
+  //             "+=0")
+  //           .to('#svg-line-1', 5, {
+  //               morphSVG: {
+  //                 shape: linesPaths.line_1_6,
+  //                 type: "rotational",
+
+  //               },
+  //               "+=0")
+  //             .to('#svg-line-1', 5, {
+  //                 morphSVG: {
+  //                   shape: linesPaths.line_1_7,
+  //                   type: "rotational",
+
+  //                 },
+  //                 "+=0");
+  //               // .to('#svg-line-1', 5, {
+  //               //   morphSVG: {
+  //               //     shape: linesPaths.line_1_8,
+  //               //     type: "rotational",
+
+  //               // }, "+=0")
+
+  //               // Lines path 2
+  //               let tl_2 = new TimelineMax({
+  //                 paused: false,
+  //                 repeat: -1,
+  //                 yoyo: false,
+  //                 ease: "none",
+  //               }); tl_2.to('#svg-line-2', 5, {
+  //                 morphSVG: linesPaths.line_2_2,
+  //               }, "-=0")
+  //               .to('#svg-line-2', 5, {
+  //                 morphSVG: linesPaths.line_2_3,
+  //               }, "-=0")
+  //               .to('#svg-line-2', 5, {
+  //                 morphSVG: linesPaths.line_2_4,
+  //               }, "+=0")
+  //               .to('#svg-line-2', 5, {
+  //                 morphSVG: linesPaths.line_2_5,
+  //               }, "+=0")
+  //               .to('#svg-line-2', 5, {
+  //                 morphSVG: linesPaths.line_2_6,
+  //               }, "+=0")
+  //               .to('#svg-line-2', 5, {
+  //                 morphSVG: linesPaths.line_2_7,
+  //               }, "+=0")
+  //               // .to('#svg-line-2', 5, {
+  //               //   morphSVG: linesPaths.line_2_8,
+  //               // }, "+=0")
+  //               // Lines path 3
+  //               let tl_3 = new TimelineMax({
+  //                 paused: false,
+  //                 repeat: -1,
+  //                 yoyo: false,
+  //                 ease: "none",
+  //               }); tl_3.to('#svg-line-3', 5, {
+  //                 morphSVG: linesPaths.line_3_2,
+  //               }, "-=0")
+  //               .to('#svg-line-3', 5, {
+  //                 morphSVG: linesPaths.line_3_3,
+  //               }, "-=0")
+  //               .to('#svg-line-3', 5, {
+  //                 morphSVG: linesPaths.line_3_4,
+  //               }, "+=0")
+  //               .to('#svg-line-3', 5, {
+  //                 morphSVG: linesPaths.line_3_5,
+  //               }, "+=0")
+  //               .to('#svg-line-3', 5, {
+  //                 morphSVG: linesPaths.line_3_6,
+  //               }, "+=0")
+  //               .to('#svg-line-3', 5, {
+  //                 morphSVG: linesPaths.line_3_7,
+  //               }, "+=0")
+  //               .to('#svg-line-3', 5, {
+  //                 morphSVG: linesPaths.line_3_8,
+  //               }, "+=0")
+  //               .to('#svg-line-3', 5, {
+  //                 // morphSVG: linesPaths.line_1_1,
+  //                 morphSVG: '#svg-line-3',
+  //               }, "+=0");
 
 
   // for (let i = 1; i < 8; i++) {
@@ -549,9 +884,9 @@ document.addEventListener("DOMContentLoaded", function () {
   //     paused: false,
   //     repeat: -1,
   //     yoyo: false,
-  //     ease: Power0.easeNone,
+  //     ease: "none",
   //   });
-  //   
+
   //   tl.to('#svg-line-1', 5, {
   //       morphSVG: svgPaths.btn_2_01,
   //     }, "-=0")
@@ -572,320 +907,9 @@ document.addEventListener("DOMContentLoaded", function () {
   //     }, "+=0");
   // };
 
-  // // Btn path 1
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-
-  //   tl.to("#svg-btn-01-" + i, 5, {
-  //       morphSVG: {
-  //         shape: svgPaths.btn_2_01,
-  //         type: "rotational",
-  // origin: "19% 32%, 99% 35%",
-  //   //     
-  //       },
-  //     }, "-=0")
-  //     .to("#svg-btn-01-" + i, 5, {
-  //       morphSVG: {
-  //         shape: svgPaths.btn_3_01,
-  //         type: "rotational",
-  // origin: "19% 32%, 99% 35%",
-  //     
-  //       },
-  //     }, "-=0")
-  //     .to("#svg-btn-01-" + i, 5, {
-  //       morphSVG: {
-  //         shape: svgPaths.btn_4_01,
-  //         type: "rotational",
-  //         origin: 50% 50%%"
-  //       -3,
-  //     }, "+=0")
-  //     .to("#svg-btn-01-" + i, 5, {
-  //       morphSVG: {
-  //         shape: svgPaths.btn_5_01,
-  //         type: "rotational",
-  //         origin: 50% 50%%"
-  //       -3,
-  //     }, "  +=0")
-  //     .to("#svg-btn-01-" + i, 5, {
-  //       morphSVG: {
-  //         shape: svgPaths.btn_6_01,
-  //         type: "rotational",
-  //         origin: 50% 50%%"
-  //       -3,
-  //     }, "+=0")
-  //     .to("#svg-btn-01-" + i, 5, {
-  //       morphSVG: {
-  //         shape: svgPaths.btn_1_01,
-  //         type: "rotational",
-  //         origin: 50% 50%%"
-  //       -3,
-  //     }, "+=0");
-  // };
-  // // Btn   path 2
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-02-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_02,
-  //     }, "-=0")
-  //     .to("#svg-btn-02-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_02,
-  //     }, "-=0")
-  //     .to("#svg-btn-02-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_02,
-  //     }, "+=0")
-  //     .to("#svg-btn-02-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_02,
-  //     }, "+=0")
-  //     .to("#svg-btn-02-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_02,
-  //     }, "+=0")
-  //     .to("#svg-btn-02-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_02,
-  //     }, "+=0");
-  // };
-  // // Btn path 3
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-03-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_03,
-  //     }, "-=0")
-  //     .to("#svg-btn-03-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_03,
-  //     }, "-=0")
-  //     .to("#svg-btn-03-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_03,
-  //     }, "+=0")
-  //     .to("#svg-btn-03-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_03,
-  //     }, "+=0")
-  //     .to("#svg-btn-03-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_03,
-  //     }, "+=0")
-  //     .to("#svg-btn-03-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_03,
-  //     }, "+=0");
-  // };
-  // // Btn path 4
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-04-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_04,
-  //     }, "-=0")
-  //     .to("#svg-btn-04-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_04,
-  //     }, "-=0")
-  //     .to("#svg-btn-04-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_04,
-  //     }, "+=0")
-  //     .to("#svg-btn-04-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_04,
-  //     }, "+=0")
-  //     .to("#svg-btn-04-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_04,
-  //     }, "+=0")
-  //     .to("#svg-btn-04-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_04,
-  //     }, "+=0");
-  // };
-  // // Btn path 5
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-05-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_05,
-  //     }, "-=0")
-  //     .to("#svg-btn-05-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_05,
-  //     }, "-=0")
-  //     .to("#svg-btn-05-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_05,
-  //     }, "+=0")
-  //     .to("#svg-btn-05-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_05,
-  //     }, "+=0")
-  //     .to("#svg-btn-05-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_05,
-  //     }, "+=0")
-  //     .to("#svg-btn-05-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_05,
-  //     }, "+=0");
-  // };
-  // // Btn path 6
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-06-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_06,
-  //     }, "-=0")
-  //     .to("#svg-btn-06-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_06,
-  //     }, "-=0")
-  //     .to("#svg-btn-06-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_06,
-  //     }, "+=0")
-  //     .to("#svg-btn-06-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_06,
-  //     }, "+=0")
-  //     .to("#svg-btn-06-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_06,
-  //     }, "+=0")
-  //     .to("#svg-btn-06-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_06,
-  //     }, "+=0");
-  // };
-  // // Btn path 7
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-07-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_07,
-  //     }, "-=0")
-  //     .to("#svg-btn-07-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_07,
-  //     }, "-=0")
-  //     .to("#svg-btn-07-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_07,
-  //     }, "+=0")
-  //     .to("#svg-btn-07-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_07,
-  //     }, "+=0")
-  //     .to("#svg-btn-07-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_07,
-  //     }, "+=0")
-  //     .to("#svg-btn-07-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_07,
-  //     }, "+=0");
-  // };
-  // // Btn path 8
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-08-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_08,
-  //     }, "-=0")
-  //     .to("#svg-btn-08-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_08,
-  //     }, "-=0")
-  //     .to("#svg-btn-08-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_08,
-  //     }, "+=0")
-  //     .to("#svg-btn-08-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_08,
-  //     }, "+=0")
-  //     .to("#svg-btn-08-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_08,
-  //     }, "+=0")
-  //     .to("#svg-btn-08-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_08,
-  //     }, "+=0");
-  // };
-  // // Btn path 9
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-09-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_09,
-  //     }, "-=0")
-  //     .to("#svg-btn-09-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_09,
-  //     }, "-=0")
-  //     .to("#svg-btn-09-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_09,
-  //     }, "+=0")
-  //     .to("#svg-btn-09-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_09,
-  //     }, "+=0")
-  //     .to("#svg-btn-09-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_09,
-  //     }, "+=0")
-  //     .to("#svg-btn-09-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_09,
-  //     }, "+=0");
-  // };
-  // // Btn path 10
-  // for (let i = 1; i < 10; i++) {
-  //   let tl = new TimelineMax({
-  //     paused: false,
-  //     repeat: -1,
-  //     yoyo: false,
-  //     ease: Power0.easeNone,
-  //   });
-
-  //   tl.to("#svg-btn-10-" + i, 5, {
-  //       morphSVG: svgPaths.btn_2_10,
-  //     }, "-=0")
-  //     .to("#svg-btn-10-" + i, 5, {
-  //       morphSVG: svgPaths.btn_3_10,
-  //     }, "-=0")
-  //     .to("#svg-btn-10-" + i, 5, {
-  //       morphSVG: svgPaths.btn_4_10,
-  //     }, "+=0")
-  //     .to("#svg-btn-10-" + i, 5, {
-  //       morphSVG: svgPaths.btn_5_10,
-  //     }, "+=0")
-  //     .to("#svg-btn-10-" + i, 5, {
-  //       morphSVG: svgPaths.btn_6_10,
-  //     }, "+=0")
-  //     .to("#svg-btn-10-" + i, 5, {
-  //       morphSVG: svgPaths.btn_1_10,
-  //     }, "+=0");
-  // };
-
 
 
   var initPhotoSwipeFromDOM = function (gallerySelector) {
-
-    // parse slide data (url, title, size ...) from DOM elements 
-    // (children of gallerySelector)
     var parseThumbnailElements = function (el) {
       var thumbElements = el.childNodes,
         numNodes = thumbElements.length,
@@ -894,20 +918,13 @@ document.addEventListener("DOMContentLoaded", function () {
         linkEl,
         size,
         item;
-
       for (var i = 0; i < numNodes; i++) {
-
         figureEl = thumbElements[i]; // <figure> element
-
-        // include only element nodes 
         if (figureEl.nodeType !== 1) {
           continue;
         }
-
         linkEl = figureEl.children[0]; // <a> element
-
         size = linkEl.getAttribute('data-size').split('x');
-
         // create slide object
         item = {
           src: linkEl.getAttribute('href'),
@@ -918,60 +935,43 @@ document.addEventListener("DOMContentLoaded", function () {
           // <figcaption> content
           item.title = figureEl.children[1].innerHTML;
         }
-
         if (linkEl.children.length > 0) {
           // <img> thumbnail element, retrieving thumbnail url
           item.msrc = linkEl.children[0].getAttribute('src');
         }
-
         item.el = figureEl; // save link to element for getThumbBoundsFn
         items.push(item);
       }
-
       return items;
     };
-
-    // find nearest parent element
     var closest = function closest(el, fn) {
       return el && (fn(el) ? el : closest(el.parentNode, fn));
     };
-
-    // triggers when user clicks on thumbnail
     var onThumbnailsClick = function (e) {
       e = e || window.event;
       e.preventDefault ? e.preventDefault() : e.returnValue = false;
-
       var eTarget = e.target || e.srcElement;
-
-      // find root element of slide
       var clickedListItem = closest(eTarget, function (el) {
         return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
       });
-
       if (!clickedListItem) {
         return;
       }
-
-      // find index of clicked item by looping through all child nodes
-      // alternatively, you may define index via data- attribute
       var clickedGallery = clickedListItem.parentNode,
         childNodes = clickedListItem.parentNode.childNodes,
         numChildNodes = childNodes.length,
         nodeIndex = 0,
         index;
-
       for (var i = 0; i < numChildNodes; i++) {
         if (childNodes[i].nodeType !== 1) {
           continue;
         }
-
         if (childNodes[i] === clickedListItem) {
           index = nodeIndex;
           break;
         }
         nodeIndex++;
       }
-
       if (index >= 0) {
         // open PhotoSwipe if valid index found
         openPhotoSwipe(index, clickedGallery);
@@ -979,16 +979,12 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('navbar').classList.add('scrollUp');
       return false;
     };
-
-    // parse picture index and gallery index from URL (#&pid=1&gid=2)
     var photoswipeParseHash = function () {
       var hash = window.location.hash.substring(1),
         params = {};
-
       if (hash.length < 5) {
         return params;
       }
-
       var vars = hash.split('&');
       for (var i = 0; i < vars.length; i++) {
         if (!vars[i]) {
@@ -1000,11 +996,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         params[pair[0]] = pair[1];
       }
-
       if (params.gid) {
         params.gid = parseInt(params.gid, 10);
       }
-
       return params;
     };
 
@@ -1013,15 +1007,9 @@ document.addEventListener("DOMContentLoaded", function () {
         gallery,
         options,
         items;
-
       items = parseThumbnailElements(galleryElement);
-
-      // define options (if needed)
       options = {
-
-        // define gallery index (for URL)
         galleryUID: galleryElement.getAttribute('data-pswp-uid'),
-
         getThumbBoundsFn: function (index) {
           // See Options -> getThumbBoundsFn section of documentation for more info
           var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
@@ -1102,31 +1090,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-
-  var lazyVideos = [].slice.call(document.querySelectorAll("video#myVideo"));
-
-  if ("IntersectionObserver" in window) {
-    var lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (video) {
-        if (video.isIntersecting) {
-          for (var source in video.target.children) {
-            var videoSource = video.target.children[source];
-            if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-              videoSource.src = videoSource.dataset.src;
+  window.addEventListener('load', (event) => {
+    var lazyVideos = [].slice.call(document.querySelectorAll("video#myVideo"));
+    if ("IntersectionObserver" in window) {
+      var lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (video) {
+          if (video.isIntersecting) {
+            for (var source in video.target.children) {
+              var videoSource = video.target.children[source];
+              if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                videoSource.src = videoSource.dataset.src;
+              }
             }
+
+            video.target.load();
+            video.target.classList.remove("lazy");
+            lazyVideoObserver.unobserve(video.target);
           }
-
-          video.target.load();
-          video.target.classList.remove("lazy");
-          lazyVideoObserver.unobserve(video.target);
-        }
+        });
       });
-    });
 
-    lazyVideos.forEach(function (lazyVideo) {
-      lazyVideoObserver.observe(lazyVideo);
-    });
-  }
+      lazyVideos.forEach(function (lazyVideo) {
+        lazyVideoObserver.observe(lazyVideo);
+      });
+    }
+  });
+
   $(document).ready(function () {
     autoPlayYouTubeModal();
   });
