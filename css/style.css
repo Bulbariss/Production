@@ -226,7 +226,7 @@ label>.label-body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9998;
+  z-index: 1001;
   /* transition: top 0.3s; */
   transition: all 0.3s;
 }
@@ -711,6 +711,17 @@ p#sent-unsuccessfully {
   overflow: hidden;
 }
 
+.video-slide {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-slide video {
+  height: 80vh;
+}
 
 .level p {
   /* width: 50px;
